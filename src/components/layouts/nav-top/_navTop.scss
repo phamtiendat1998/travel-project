@@ -1,0 +1,58 @@
+@import "../../common/scss/common.scss";
+
+#navtop {
+  width: 100%;
+  height: $h-nav-xl;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  box-shadow: $bs-nav-top;
+  div {
+    height: 100%;
+  }
+  .logo {
+    width: $w-logo-xl;
+    height: $h-logo-xl;
+    background-color: $redColor;
+    @include flex-center;
+    p {
+      font-size: $s-logo-xl;
+      color: white;
+    }
+  }
+  .nav-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: $w-nav-item;
+  }
+  .search-bar {
+    width: $w-nav-search;
+    @include flex-start;
+    &--icon {
+      color: $txt-gray-color;
+      @include flex-start;
+    }
+    input {
+      border: none;
+      width: 80%;
+      font-size: $f-nav-xl;
+      ::placeholder {
+        color: $txt-gray-color;
+        font-size: $f-nav-xl;
+      }
+      :focus {
+        outline: none !important;
+      }
+    }
+  }
+  p {
+    font-size: $f-nav-xl;
+  }
+  span.icon {
+    font-size: $f-nav-icon-xl;
+    color: $icon-color;
+  }
+}

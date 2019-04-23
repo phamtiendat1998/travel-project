@@ -1,0 +1,9 @@
+@import '../../common/scss/common.scss';
+
+.main-wrapper{
+    width: 100%;
+    height: $h-main-xl ;
+    position: fixed;
+    top: 8%;
+    left: 0;
+}

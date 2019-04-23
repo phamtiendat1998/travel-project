@@ -1,16 +1,25 @@
 import React, { Component } from 'react';
 import './App.css';
-import './components/page/Intro/_intro.scss'
+import UserTemplate from './components/Templates/UserTemplate/UserTemplate'
+
 
 class App extends Component {
+  loadRouter = () => {
+    switch (window.location.pathname) {
+      case '/': {
+        return <UserTemplate />
+      };
+      default: {
+        return <UserTemplate />
+      }
+    }
+  }
   render() {
     return (
       <div className="App">
-        <div className="oke">
-          
-        </div>
+        {this.loadRouter()}
       </div>
-    );
+    )
   }
 }
 
