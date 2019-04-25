@@ -3,7 +3,21 @@ const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser')
 
-const userRouter = require('./api/routes/users');
+const UserRouter = require('./api/routes/users');
+
+// ConnectDB
+const mongoose = require('mongoose');
+const options = {
+    db: { native_parser: true },
+    server: { poolSize: 5 }
+}
+// Use native Promises
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost:27017/plane-travel', options).then((result) => {
+    console.log("Connect DB successfully");
+}).catch((err) => {
+    console.log("Connect failed :" + err);
+});
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({
@@ -21,7 +35,7 @@ app.use((req, res, next) => {
     next();
 });
 // Routes which should handle requests
-app.use('/users', userRouter);
+app.use('/users', UserRouter);
 
 app.use((req, res, next) => {
     const error = new Error('Not found');
