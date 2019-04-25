@@ -1,2 +1,24 @@
+// Font
+$f-nav-xl: 15px;
+$f-nav-icon-xl: $f-nav-xl * 1.2;
 // Color
-$redColor : red;
+$redColor: #e33d25;
+$icon-color: #2d2626d4;
+$txt-gray-color: #bbb7b7;
+$border-gray-color: #bbb7b759;
+// Width
+$w-logo-xl: 50px;
+$w-nav-item: $w-logo-xl * 2;
+$w-nav-search: calc(100% - 50px - 300px);
+$w-button-fly: $w-logo-xl * 3;
+// Height
+$h-main-xl: 84vh;
+$h-nav-xl: 8%;
+$h-logo-xl: 50px;
+//Size
+$s-logo-xl: 30px;
+// Padding
+// Box Shadow
+$bs-nav-top: 0px 0px 5px black;
+$bs-nav-bot: 0px 0px 5px black  ;
+
