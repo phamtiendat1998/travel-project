@@ -1,4 +1,4 @@
-##Front-end
+﻿##Front-end
 
 1. React component structure : Presentational and Container Components
 
@@ -15,6 +15,10 @@
 
 1. Server: Nodejs
 2. DB: MongoDB
+------------------------------
+** Open server:
+- npm install
+- npm start
 
 ##Note
 1. Get current location in order to get temperature
