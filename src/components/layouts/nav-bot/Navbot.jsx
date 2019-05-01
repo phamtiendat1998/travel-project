@@ -1,28 +1,51 @@
 import React, { Component } from 'react'
-import './_navBot.scss'
-export default class Navbot extends Component {
+import { Link } from 'react-router-dom'
+import styled from 'styled-components'
+
+// Components
+import Nav from '../Nav/Nav'
+
+// Style
+const RightButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+const StyleLink = {
+  textDecoration: 'none',
+  color: 'black'
+};
+const StyleMBIcon = {
+  marginBottom: '-4px'
+};
+const StyleMRIcon ={
+  marginRight: '5px'
+};
+export default class NavBot extends Component {
   render() {
     return (
-      <div id="navbot">
-        <div className="button-fly border-right ">
-          <span className="icon mr-2"><i className="fas fa-plane-departure"></i></span>
-          <p>Fly</p>
-        </div>
-        <div className="button-right">
-          <div className="button-right--item checkin border-left">
-            <span className="icon"><i class="fas fa-calendar-check"></i></span>
+      <Nav bottom>
+        <Link style={StyleLink} to="/home" className="button-fly border-right">
+          <Nav.Item widthValue={props => props.theme.widthButtonFly}>
+            <span style={StyleMRIcon}><i className="fas fa-plane-departure"></i></span>
+            <p>Fly</p>
+          </Nav.Item>
+        </Link>
+        <RightButtonWrapper>
+          <Nav.Item flexColunm widthValue={props => props.theme.widthNavItem}>
+            <span style={StyleMBIcon}><i className="fas fa-calendar-check"></i></span>
             <p>Check in</p>
-          </div>
-          <div className="button-right--item checkin border-left">
-            <span className="icon"><i class="fas fa-calendar-check"></i></span>
+          </Nav.Item>
+          <Nav.Item flexColunm widthValue={props => props.theme.widthNavItem}>
+            <span style={StyleMBIcon}><i className="fas fa-calendar-check"></i></span>
             <p>Check in</p>
-          </div>
-          <div className="button-right--item checkin border-left">
-            <span className="icon"><i class="fas fa-calendar-check"></i></span>
+          </Nav.Item>
+          <Nav.Item flexColunm widthValue={props => props.theme.widthNavItem}>
+            <span style={StyleMBIcon}><i className="fas fa-calendar-check"></i></span>
             <p>Check in</p>
-          </div>
-        </div>
-      </div>
+          </Nav.Item>
+        </RightButtonWrapper>
+      </Nav>
     )
   }
 }

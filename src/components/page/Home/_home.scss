@@ -1,0 +1,19 @@
+#home {
+  width: 100%;
+  height: $h-main-xl;
+  z-index: 11;
+  position: absolute;
+  top: 0;
+  left: 0;
+  @include flex-center;
+  .home--carousel {
+    flex-grow: 1;
+    background-color: red;
+    height: $h-main-xl;
+  }
+  .home--sideBar {
+    flex-basis: $w-side-bar;
+    background-color: black;
+    height: $h-main-xl;
+  }
+}

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './_navTop.scss'
+
 export default class Navtop extends Component {
   render() {
     return (

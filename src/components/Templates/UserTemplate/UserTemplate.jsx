@@ -1,28 +1,36 @@
-import React, { Component, Fragment } from 'react'
-import { BrowserRouter, Route } from 'react-router-dom'
+import React, { Component } from 'react'
+import { Route, Switch } from 'react-router-dom'
+import styled from 'styled-components'
+
+// Components
 import Intro from '../../page/Intro/intro'
 import Home from '../../page/Home/home'
-import './_userTemplate.scss'
 import Navtop from '../../layouts/nav-top/Navtop'
-import Navbot from '../../layouts/nav-bot/Navbot'
+import NavBot from '../../layouts/nav-bot/NavBot'
 
-
-
+// Style
+const MainWrapper = styled.div`
+    width: 100%;
+    height: ${props => props.theme.heightMainXl};
+    position: fixed;
+    top: 8%;
+    left: 0;
+    overflow: hidden;
+    z-index: 1;
+`;
 
 export default class UserTemplate extends Component {
     render() {
         return (
             <div>
-                <BrowserRouter>
-                    <Fragment>
-                        <Navtop />
-                        <div className="main-wrapper">
-                            <Route path='' component={Intro} />
-                            <Route path='/home' component={Home} />
-                        </div>
-                        <Navbot />
-                    </Fragment>
-                </BrowserRouter>
+                <Navtop />
+                <MainWrapper>
+                    <Switch>
+                        <Route exact path='/' component={Intro} />
+                        <Route path='/home' component={Home} />
+                    </Switch>
+                </MainWrapper>
+                <NavBot />
             </div>
         )
     }
