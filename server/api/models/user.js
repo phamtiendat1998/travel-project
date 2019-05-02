@@ -1,18 +1,22 @@
 const mongoose = require('mongoose');
-const helperString = require('./../../helpers/string');
+const stringHelpper = require('../../helpers/stringHelpper');
 
 const UserSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
-    first_name: { type: String, required: true },
-    last_name: { type: String, required: true },
-    email: { type: String, required: true },
+    first_name: String,
+    last_name: String,
+    email: String,
     dob: {
         day: Number,
         month: Number,
         year: Number
     },
     address: String,
-    country: { type: String, required: true },
+    country: String,
+    user_name: String,
+    pass_word: String,
+    category_acc: String,
+    avatar: String,
     create_date: { type: Date, default: Date.now }
 }, {
         // Set versionKey of mongoose
@@ -21,7 +25,7 @@ const UserSchema = mongoose.Schema({
 
 // Setter
 UserSchema
-    .path('first_name').set((inputString) => helperString.upperFirstString(inputString));
+    .path('first_name').set((inputString) => stringHelpper.upperFirstString(inputString));
 UserSchema
-    .path('last_name').set((inputString) => helperString.upperFirstString(inputString));
+    .path('last_name').set((inputString) => stringHelpper.upperFirstString(inputString));
 module.exports = mongoose.model('User', UserSchema);
