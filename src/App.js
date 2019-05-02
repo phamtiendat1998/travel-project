@@ -10,8 +10,6 @@ import theme from './theme'
 // Components
 import UserTemplate from './components/Templates/UserTemplate/UserTemplate'
 
-import './components/common/scss/common.scss'
-
 class App extends Component {
   render() {
     return (

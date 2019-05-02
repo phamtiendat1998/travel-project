@@ -3,11 +3,11 @@ import { Route, Switch } from 'react-router-dom'
 import styled from 'styled-components'
 
 // Components
-import Intro from '../../page/Intro/intro'
+import Intro from '../../page/Intro/Intro'
 import Home from '../../page/Home/home'
-import Navtop from '../../layouts/nav-top/Navtop'
-import NavBot from '../../layouts/nav-bot/NavBot'
-
+import NavTop from '../../layouts/Nav/NavTop'
+import NavBot from '../../layouts/Nav/NavBot'
+import Login from '../../page/Login/Login'
 // Style
 const MainWrapper = styled.div`
     width: 100%;
@@ -23,10 +23,11 @@ export default class UserTemplate extends Component {
     render() {
         return (
             <div>
-                <Navtop />
+                <NavTop />
                 <MainWrapper>
                     <Switch>
                         <Route exact path='/' component={Intro} />
+                        <Route path='/login' component={Login} />
                         <Route path='/home' component={Home} />
                     </Switch>
                 </MainWrapper>

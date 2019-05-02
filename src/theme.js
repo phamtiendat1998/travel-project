@@ -1,11 +1,12 @@
 const theme = {
     // Font
     fontNavXl: '15px',
-    // fontNavIconXl: fontNavXl * 1.2,
+    fontNavIconXl: '18px',
     // Color
     colorNav: 'white',
     colorRed: '#e33d25',
-    colorIcon: '#2d2626d4',
+    colorIcon: 'black',
+    colorGrayIcon: '#bbb7b7',
     txtGrayColor: '#bbb7b7',
     borderGrayColor: '#bbb7b759',
     // Width
