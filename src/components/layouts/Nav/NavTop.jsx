@@ -58,19 +58,19 @@ export default class Navtop extends Component {
           <SearchBarIcon><Nav.Item.Icon Search marginValue='0 10px'><i className="fas fa-search"></i></Nav.Item.Icon></SearchBarIcon>
           <SearchInput className="" type="text" name="" placeholder="Search Flight, Promotion and Travel tips...." />
         </SearchBar>
-        <Nav.Item borderLeft widthValue={props => props.theme.widthNavItem}>
+        <Nav.Item hoverTop borderLeft widthValue={props => props.theme.widthNavItem}>
           <Nav.Item.Icon><i className="far fa-flag"></i></Nav.Item.Icon>
         </Nav.Item>
         <Link style={{
           textDecoration: 'none',
           color: 'black'
         }} to="/login">
-          <Nav.Item borderLeft widthValue={props => props.theme.widthNavItem}>
+          <Nav.Item hoverTop borderLeft widthValue={props => props.theme.widthNavItem}>
             <Nav.Item.Icon marginValue='0 5px'><i className="fas fa-user"></i></Nav.Item.Icon>
             <Para.FontNav>Login</Para.FontNav>
           </Nav.Item>
         </Link>
-        <Nav.Item borderLeft widthValue={props => props.theme.widthNavItem}>
+        <Nav.Item hoverTop borderLeft widthValue={props => props.theme.widthNavItem}>
           <Para.FontNav>Help/Suport</Para.FontNav>
         </Nav.Item>
       </Nav>

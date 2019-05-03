@@ -13,7 +13,7 @@ const MainWrapper = styled.div`
     width: 100%;
     height: ${props => props.theme.heightMainXl};
     position: fixed;
-    top: 8%;
+    top: ${ props => props.theme.heightNavXl};
     left: 0;
     overflow: hidden;
     z-index: 1;

@@ -1,15 +1,37 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import styled from 'styled-components';
 
+const IntroWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+`;
 
-export default class intro extends Component {
+const IntroVideo = styled.video`
+  width: 100%;
+  height: auto;
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+`;
+const IntroLayer = styled.div`
+  width: 100%;
+  height: 100%; 
+  background-color: black;
+  opacity: 0.4;
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  left: 0;
+`;
+
+export default class Intro extends Component {
   render() {
     return (
-      <div className="intro">
-        <video className="intro__bg-video" src="./video-intro.mp4" autoPlay loop></video>
-        <div className="intro__bg-layer"></div>
-        <div className="intro__txt pr-9">
-        </div>
-      </div>
+      <IntroWrapper>
+        <IntroVideo src="./video-intro.mp4" autoPlay loop></IntroVideo>
+        <IntroLayer></IntroLayer>
+      </IntroWrapper>
     )
   }
 }
