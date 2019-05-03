@@ -8,13 +8,9 @@ const ButtonHoverRed = styled.button`
     background-color: ${props => props.theme.btnRedColor};
     color: white;
     border-radius: 4px;
-    opacity: 0.6;
     transition: 0.6s;
     &:focus{
         outline: none;
-    }
-    &:hover{
-        opacity: 1;
     }
 `;
 
