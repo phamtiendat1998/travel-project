@@ -7,7 +7,6 @@ const Label = styled.label`
     font-weight: ${props => props.theme.fw1};
     margin: 0;
     transition: 0.4s;
-    padding: 0 10px;
 `;
 
 export default Label;

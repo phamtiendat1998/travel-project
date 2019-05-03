@@ -20,6 +20,7 @@ const FontP = styled(Para).attrs(({ colorVaule }) => ({
 }))`
     font-size: ${props => props.theme.fontP};
     color: ${props => props.colorP};
+    font-weight: ${props => props.theme.fw1};
 `;
 
 Para.FontNav = FontNav;
