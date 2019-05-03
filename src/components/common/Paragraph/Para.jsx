@@ -13,6 +13,7 @@ const FontNav = styled(Para)`
 
 const FontTitle = styled(Para)`
     font-size: ${props => props.theme.fontTitle};
+    margin-bottom: 1%;
 `;
 
 const FontP = styled(Para).attrs(({ colorVaule }) => ({

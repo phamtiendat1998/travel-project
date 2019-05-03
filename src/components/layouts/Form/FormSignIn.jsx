@@ -13,9 +13,6 @@ const SignInWrapper = styled.div`
     left: 0;
     padding: 5% 5%;
 `;
-const styleFontTitle = {
-    marginBottom: '1%'
-};
 
 const styleFontP = {
     marginBottom: '10%'
@@ -26,24 +23,28 @@ const ButtonWrapper = styled.div`
 export default class FormSignIn extends Component {
     labelContent = {
         userName: "Username",
+        alertUserName: "Please fill password",
         passWord: "Password"
     }
+
+
     render() {
         return (
             <SignInWrapper>
-                <Para.FontTitle style={styleFontTitle}>We are <Para.FontSpanBoldRed>F-i</Para.FontSpanBoldRed></Para.FontTitle>
+                <Para.FontTitle>We are <Para.FontSpanBoldRed>F-i</Para.FontSpanBoldRed></Para.FontTitle>
                 <Para.FontP style={styleFontP} colorVaule={props => props.theme.txtGrayColor}>Welcome Back, Please login to your account.</Para.FontP>
                 <InputGroup
+                    alert={false}
                     labelContent={this.labelContent.userName}
                     typeInput={"input"}
                     placeHolder={"example123"}
                 ></InputGroup>
-
-
-                {/* <InputGroup focusStatus={this.state.focusInputPassStatus}>
-                    <InputGroup.Label focusStatus={this.state.focusInputPassStatus}>Password </InputGroup.Label>
-                    <InputGroup.Input type="password" placeholder="example123!@#" onBlur={this.handleMousePassBlur} onFocus={this.handleMousePassFocus}></InputGroup.Input>
-                </InputGroup> */}
+                <InputGroup
+                    alert={true}
+                    labelContent={this.labelContent.alertUserName}
+                    typeInput={"password"}
+                    placeHolder={"example123@"}
+                ></InputGroup>
                 <CheckBoxGroup>
                     <CheckBoxGroup.CheckBox type="checkbox"></CheckBoxGroup.CheckBox>
                     <CheckBoxGroup.Para>Remember me</CheckBoxGroup.Para>
@@ -53,6 +54,8 @@ export default class FormSignIn extends Component {
                 </ButtonWrapper>
                 <Para.FontP colorVaule={props => props.theme.txtGrayColor}>By signing up, you agree to F-i's</Para.FontP>
                 <Para.FontP>Terms and Conditions</Para.FontP>
+                <Para.FontP colorVaule={props => props.theme.txtGrayColor}>&</Para.FontP>
+                <Para.FontP>Privacy Policy</Para.FontP>
             </SignInWrapper>
         )
     }
