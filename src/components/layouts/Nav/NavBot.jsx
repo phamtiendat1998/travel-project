@@ -19,7 +19,7 @@ export default class NavBot extends Component {
         <Link style={{
           textDecoration: 'none',
           color: 'black'
-        }} to="/home">
+        }} to="/fly">
           <Nav.Item hoverBot borderRight widthValue={props => props.theme.widthButtonFly}>
             <Nav.Item.Icon marginValue='0 5px'><i className="fas fa-plane-departure"></i></Nav.Item.Icon>
             <Para.FontNav>Fly</Para.FontNav>

@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
-import { Route, Switch } from 'react-router-dom'
-import styled from 'styled-components'
+import React, { Component } from 'react';
+import { Route, Switch } from 'react-router-dom';
+import styled from 'styled-components';
 
 // Components
-import Intro from '../../page/Intro/Intro'
-import Home from '../../page/Home/home'
-import NavTop from '../../layouts/Nav/NavTop'
-import NavBot from '../../layouts/Nav/NavBot'
-import Login from '../../page/Login/Login'
+import Intro from '../../page/Intro/Intro';
+import NavTop from '../../layouts/Nav/NavTop';
+import NavBot from '../../layouts/Nav/NavBot';
+import Login from '../../page/Login/Login';
+import Fly from './../../page/Fly/Fly';
 // Style
 const MainWrapper = styled.div`
     width: 100%;
@@ -28,7 +28,7 @@ export default class UserTemplate extends Component {
                     <Switch>
                         <Route exact path='/' component={Intro} />
                         <Route path='/login' component={Login} />
-                        <Route path='/home' component={Home} />
+                        <Route path='/fly' component={Fly} />
                     </Switch>
                 </MainWrapper>
                 <NavBot />

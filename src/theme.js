@@ -19,9 +19,9 @@ const theme = {
     // Width
     widthLogoXl: '50px',
     widthNavItem: '100px',
-    // widthNavSearch: 'calc(100 % 50px - 300px)',
     widthButtonFly: '150px',
-    // widthSideBar: wnavitem * 3,
+    widthCtFly: 'calc(100% - 300px)',
+    widthSideBar: '300px',
     // Height
     heightMainXl: 'calc(100% - 100px)',
     heightNavXl: '50px',
