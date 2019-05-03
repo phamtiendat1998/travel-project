@@ -5,6 +5,7 @@ const theme = {
     fontLabel: '15px',
     fontInput: '20px',
     fontP: '15px',
+    fontP2: '20px',
     fontTitle: '50px',
     fontInputAlert: '15px',
     // Font Weight
@@ -12,12 +13,20 @@ const theme = {
     // Color
     colorNav: 'white',
     colorRed: '#e33d25',
+    colorBlue: '#508f9f',
+    colorPstRed: '#e33d25',
+    colorPstBlue: '#508f9f',
+    colorBfBlue: '#2e5a65',
+    colorBfRed: '#bc0202',
     colorIcon: 'black',
     colorGrayIcon: '#bbb7b7',
     txtGrayLabel: '#bbb7b7',
     txtGrayColor: '#bbb7b7',
     btnRedColor: '#e33d25',
     borderGrayColor: '#bbb7b759',
+    bgTopSideBar:'#757171',
+    bgBotSideBar: '#BBB7B7',
+    TxtSideBar: '#C29B61',
     // Width
     widthLogoXl: '50px',
     widthNavItem: '100px',

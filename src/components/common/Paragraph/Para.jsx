@@ -24,8 +24,14 @@ const FontP = styled(Para).attrs(({ colorVaule }) => ({
     font-weight: ${props => props.theme.fw1};
 `;
 
+const FontP2 = styled(Para)`
+    font-size: ${props => props.theme.fontP2};
+`;
+
 Para.FontNav = FontNav;
 Para.FontTitle = FontTitle;
 Para.FontSpanBoldRed = FontSpanBoldRed;
 Para.FontP = FontP;
+Para.FontP2 = FontP2;
+
 export default Para;
