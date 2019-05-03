@@ -12,8 +12,9 @@ const SignInWrapper = styled.div`
     top: 0;
     left: 0;
     padding: 5% 5%;
+    transition: transform 0.6s ease-in-out;
+    transform: ${props => props.statusSignIn ? "translateX(0)" : "translateX(-150%)"};
 `;
-
 const styleFontP = {
     marginBottom: '10%'
 };
@@ -27,10 +28,9 @@ export default class FormSignIn extends Component {
         passWord: "Password"
     }
 
-
     render() {
         return (
-            <SignInWrapper>
+            <SignInWrapper statusSignIn={this.props.statusSignIn}>
                 <Para.FontTitle>We are <Para.FontSpanBoldRed>F-i</Para.FontSpanBoldRed></Para.FontTitle>
                 <Para.FontP style={styleFontP} colorVaule={props => props.theme.txtGrayColor}>Welcome Back, Please login to your account.</Para.FontP>
                 <InputGroup

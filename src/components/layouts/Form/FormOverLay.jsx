@@ -37,7 +37,7 @@ const OverLaySignUp = styled(OverLay)`
 `;
 const OverLaySignIn = styled(OverLay)`
     left: 0;
-    transform: ${props => props.statusSignUp ? "translateX(0)" : "translateX(-150%)"};
+    transform: ${props => props.statusSignIn ? "translateX(-150%)" : "translateX(0)"};
 `;
 const styleP = {
     textAlign: 'center',
@@ -46,22 +46,26 @@ const styleP = {
 export default class FormOverLay extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            statusSignUp: false,
+            statusSignIn: true
+        };
         this.handleSignUpOL = this.handleSignUpOL.bind(this);
-    }
-    state = {
-        statusSignUp: false
     }
     handleSignUpOL() {
         this.state.statusSignUp ? this.setState({
-            statusSignUp: false
+            statusSignUp: false,
+            statusSignIn: true,
         }) : this.setState({
-            statusSignUp: true
+            statusSignUp: true,
+            statusSignIn: false,
         });
+        this.props.getStatusFromOverLay(this.state);
     }
     render() {
         return (
             <OverLayWrapper statusSignUp={this.state.statusSignUp}>
-                <OverLaySignIn statusSignUp={this.state.statusSignUp}>
+                <OverLaySignIn statusSignIn={this.state.statusSignIn}>
                     <Para.FontTitle>Already have an account?</Para.FontTitle>
                     <Para.FontP style={styleP}>Sign in to get personalized story recommendations, follow authors and topics you love, and interact with stories.</Para.FontP>
                     <ButtonHoverRed type="button" onClick={this.handleSignUpOL}>Sign In</ButtonHoverRed>
