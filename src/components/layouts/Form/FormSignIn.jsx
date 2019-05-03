@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import InputGroup from './../../common/Input/InputGroup';
 import CheckBoxGroup from '../../common/Input/CheckBoxGroup';
 import Para from './../../common/Paragraph/Para';
+import ButtonHoverRed from './../../common/Button/ButtonHoverRed';
 
 const SignInWrapper = styled.div`
     width: 50%;
@@ -19,58 +20,39 @@ const styleFontTitle = {
 const styleFontP = {
     marginBottom: '10%'
 };
-
+const ButtonWrapper = styled.div`
+    margin-bottom: 5%;
+`;
 export default class FormSignIn extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            focusInputAccStatus: false,
-            focusInputPassStatus: false
-        };
-        this.handleMouseAccFocus = this.handleMouseAccFocus.bind(this);
-        this.handleMouseAccBlur = this.handleMouseAccBlur.bind(this);
-        this.handleMousePassFocus = this.handleMousePassFocus.bind(this);
-        this.handleMousePassBlur = this.handleMousePassBlur.bind(this);
+    labelContent = {
+        userName: "Username",
+        passWord: "Password"
     }
-
-    handleMouseAccFocus() {
-        this.setState({
-            focusInputAccStatus: true,
-        });
-    }
-    handleMouseAccBlur() {
-        this.setState({
-            focusInputAccStatus: false,
-        });
-    }
-    handleMousePassFocus() {
-        this.setState({
-            focusInputPassStatus: true,
-        });
-    }
-    handleMousePassBlur() {
-        this.setState({
-            focusInputPassStatus: false,
-        });
-    }
-
     render() {
         return (
             <SignInWrapper>
                 <Para.FontTitle style={styleFontTitle}>We are <Para.FontSpanBoldRed>F-i</Para.FontSpanBoldRed></Para.FontTitle>
                 <Para.FontP style={styleFontP} colorVaule={props => props.theme.txtGrayColor}>Welcome Back, Please login to your account.</Para.FontP>
-                <InputGroup focusStatus={this.state.focusInputAccStatus}>
-                    <InputGroup.Label focusStatus={this.state.focusInputAccStatus}>Username </InputGroup.Label>
-                    <InputGroup.Input placeholder="example1998" onBlur={this.handleMouseAccBlur} onFocus={this.handleMouseAccFocus}></InputGroup.Input>
-                </InputGroup>
-                <InputGroup focusStatus={this.state.focusInputPassStatus}>
+                <InputGroup
+                    labelContent={this.labelContent.userName}
+                    typeInput={"input"}
+                    placeHolder={"example123"}
+                ></InputGroup>
+
+
+                {/* <InputGroup focusStatus={this.state.focusInputPassStatus}>
                     <InputGroup.Label focusStatus={this.state.focusInputPassStatus}>Password </InputGroup.Label>
                     <InputGroup.Input type="password" placeholder="example123!@#" onBlur={this.handleMousePassBlur} onFocus={this.handleMousePassFocus}></InputGroup.Input>
-                </InputGroup>
+                </InputGroup> */}
                 <CheckBoxGroup>
                     <CheckBoxGroup.CheckBox type="checkbox"></CheckBoxGroup.CheckBox>
                     <CheckBoxGroup.Para>Remember me</CheckBoxGroup.Para>
                 </CheckBoxGroup>
+                <ButtonWrapper>
+                    <ButtonHoverRed>Login</ButtonHoverRed>
+                </ButtonWrapper>
+                <Para.FontP colorVaule={props => props.theme.txtGrayColor}>By signing up, you agree to F-i's</Para.FontP>
+                <Para.FontP>Terms and Conditions</Para.FontP>
             </SignInWrapper>
         )
     }
