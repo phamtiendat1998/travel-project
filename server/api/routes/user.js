@@ -15,4 +15,11 @@ router.route('/:user_id')
     .patch([validateParam(schemas.idSchema, 'user_id'), validateBody(schemas.userOptionalSchema)], UserControler.updateUser)
     .delete(validateParam(schemas.idSchema, 'user_id'), UserControler.deleteUser);
 
+// Sign in
+router.route('/signin')
+    .post(validateBody(schemas.accountSchema), UserControler.login);
+    
+// Sign Up
+router.route('/signup')
+    .post(validateBody(schemas.userSchema), UserControler.newUser);
 module.exports = router;

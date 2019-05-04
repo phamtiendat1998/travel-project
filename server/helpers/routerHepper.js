@@ -11,7 +11,7 @@ module.exports = {
                 if (!req.value)
                     req.value = {};
                 if (!req.value['params'])
-                    req.value['params'] = {}
+                    req.value['params'] = {};
                 req.value['params'][name] = result.value.param;
                 next();
             }
@@ -26,21 +26,19 @@ module.exports = {
                 if (!req.value)
                     req.value = {};
                 if (!req.value['body'])
-                    req.value['body'] = {}
-                req.value['body'][name] = result.value.param;
+                    req.value['body'] = {};
+                req.value['body'] = result.value;
                 next();
             }
         }
     },
     schemas: {
         userSchema: Joi.object().keys({
-            first_name: Joi.string().regex(/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/).required(),
-            last_name: Joi.string().regex(/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/).required(),
             email: Joi.string().email().required(),
-            country: Joi.string().required(),
             user_name: Joi.string().regex(/^(?!.*__.*)(?!.*\.\..*)[a-z0-9_.]+$/).required(),
             pass_word: Joi.string().regex(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/).required(),
-            category_acc: Joi.string().required()
+            category_acc: Joi.string().required(),
+            status: Joi.boolean().required()
         }),
         userOptionalSchema: Joi.object().keys({
             first_name: Joi.string().regex(/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/),
@@ -49,7 +47,12 @@ module.exports = {
             country: Joi.string(),
             user_name: Joi.string().regex(/^(?!.*__.*)(?!.*\.\..*)[a-z0-9_.]+$/),
             pass_word: Joi.string().regex(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/),
-            category_acc: Joi.string()
+            category_acc: Joi.string(),
+            status: Joi.boolean()
+        }),
+        accountSchema: Joi.object().keys({
+            user_name: Joi.string().regex(/^(?!.*__.*)(?!.*\.\..*)[a-z0-9_.]+$/).required(),
+            pass_word: Joi.string().regex(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/).required()
         }),
         idSchema: Joi.object().keys({
             user_id: Joi.string().regex(/^[0-9a-fA-F]{24}$/).required()

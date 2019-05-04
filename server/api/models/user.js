@@ -17,6 +17,7 @@ const UserSchema = mongoose.Schema({
     pass_word: String,
     category_acc: String,
     avatar: String,
+    status: Boolean,
     create_date: { type: Date, default: Date.now }
 }, {
         // Set versionKey of mongoose
