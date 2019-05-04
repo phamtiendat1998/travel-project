@@ -8,6 +8,7 @@
 - Common : Dùng chung
 - Layout : Một component mang mức độ thành phần
 - Page : Component ở mức độ trang 
+- Templates: chia thành 2 phần người dùng và admin
 *Note: Mỗi một thành phần phải tạo thư mục
 ---
 

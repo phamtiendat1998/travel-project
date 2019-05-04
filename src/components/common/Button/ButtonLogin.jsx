@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const ButtonHoverRed = styled.button`
+const ButtonLogin = styled.button`
     width: 120px;
     height: 45px;
     background: none;
@@ -14,4 +14,4 @@ const ButtonHoverRed = styled.button`
     }
 `;
 
-export default ButtonHoverRed
+export default ButtonLogin

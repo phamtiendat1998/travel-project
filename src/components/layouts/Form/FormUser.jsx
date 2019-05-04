@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-import FormSignIn from './FormSignIn';
-import FormSignUp from './FormSignUp';
+import FormSignInContainer from './FormSignInContainer';
+import FormSignUpContainer from './FormSignUpContainer'
 import FormOverLay from './FormOverLay';
 
 const FormUserWrapper = styled.div`
@@ -17,23 +17,23 @@ export default class FormUser extends Component {
         super(props);
         this.getStatusFromOverLay = this.getStatusFromOverLay.bind(this);
         this.state = {
-            statusSignUp: false,
-            statusSignIn: true
+            statusSignIn: true,
+            statusSignUp: false
         }
     }
 
     getStatusFromOverLay(status) {
         this.setState({
-            statusSignUp: !status.statusSignUp,
-            statusSignIn: !status.statusSignIn
+            statusSignIn: status.statusSignIn,
+            statusSignUp: status.statusSignUp
         });
     }
     render() {
         return (
             <FormUserWrapper>
-                <FormSignIn statusSignIn={this.state.statusSignIn}></FormSignIn>
-                <FormSignUp statusSignUp={this.state.statusSignUp}></FormSignUp>
-                <FormOverLay getStatusFromOverLay={this.getStatusFromOverLay}></FormOverLay>
+                <FormSignInContainer statusSignIn={this.state.statusSignIn}></FormSignInContainer>
+                <FormSignUpContainer statusSignUp={this.state.statusSignUp}></FormSignUpContainer>
+                <FormOverLay statusSignIn={this.state.statusSignIn} statusSignUp={this.state.statusSignUp} getStatusFromOverLay={this.getStatusFromOverLay}></FormOverLay>
             </FormUserWrapper>
         )
     }

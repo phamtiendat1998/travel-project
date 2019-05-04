@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components';
 
-import ButtonHoverRed from './../../common/Button/ButtonHoverRed';
+import ButtonLogin from './../../common/Button/ButtonLogin';
 import Para from './../../common/Paragraph/Para';
 
 const OverLayWrapper = styled.div`
@@ -47,20 +47,28 @@ export default class FormOverLay extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            statusSignUp: false,
-            statusSignIn: true
+            statusSignIn: '',
+            statusSignUp: ''         
         };
         this.handleSignUpOL = this.handleSignUpOL.bind(this);
     }
-    handleSignUpOL() {
-        this.state.statusSignUp ? this.setState({
-            statusSignUp: false,
-            statusSignIn: true,
-        }) : this.setState({
-            statusSignUp: true,
-            statusSignIn: false,
+    componentWillMount() {
+        this.setState({
+            statusSignIn: this.props.statusSignIn,
+            statusSignUp: this.props.statusSignUp,
         });
-        this.props.getStatusFromOverLay(this.state);
+    }
+    nextState;
+    handleSignUpOL() {
+        this.state.statusSignUp ? this.nextState = {
+            statusSignIn: true,
+            statusSignUp: false
+        } : this.nextState = {
+            statusSignIn: false,
+            statusSignUp: true
+        };
+        this.props.getStatusFromOverLay(this.nextState);
+        this.setState(this.nextState);
     }
     render() {
         return (
@@ -68,12 +76,12 @@ export default class FormOverLay extends Component {
                 <OverLaySignIn statusSignIn={this.state.statusSignIn}>
                     <Para.FontTitle>Already have an account?</Para.FontTitle>
                     <Para.FontP style={styleP}>Sign in to get personalized story recommendations, follow authors and topics you love, and interact with stories.</Para.FontP>
-                    <ButtonHoverRed type="button" onClick={this.handleSignUpOL}>Sign In</ButtonHoverRed>
+                    <ButtonLogin type="button" onClick={this.handleSignUpOL}>Sign In</ButtonLogin>
                 </OverLaySignIn>
                 <OverLaySignUp statusSignUp={this.state.statusSignUp}>
                     <Para.FontTitle>No account?</Para.FontTitle>
                     <Para.FontP style={styleP}>Create an account to receive great stories in your inbox, personalize your homepage, and follow authors and topics that you love.</Para.FontP>
-                    <ButtonHoverRed type="button" onClick={this.handleSignUpOL}>Create One</ButtonHoverRed>
+                    <ButtonLogin type="button" onClick={this.handleSignUpOL}>Create One</ButtonLogin>
                 </OverLaySignUp>
             </OverLayWrapper>
         )
