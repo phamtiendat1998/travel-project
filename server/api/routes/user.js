@@ -17,6 +17,7 @@ router.route('/:user_id')
 
 // Sign in
 router.route('/signin')
+    // localhost:3000/user/signin
     .post(validateBody(schemas.accountSchema), UserControler.login);
     
 // Sign Up

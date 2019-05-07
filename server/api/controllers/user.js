@@ -28,12 +28,12 @@ module.exports = {
             jsonHelpper.successJson(200, res, user);
         };
     },
-    login: async (req, res, next) => {
-        const userLogin = User.find({ user_name: req.value.body.user_name });
+    login: async (req, res, next) => {  
+        const userLogin = await User.find({ user_name: req.body.user_name });
         if (userLogin.length < 1) {
             jsonHelpper.failJson(500, res, 'account', 'Account not found');
         } else {
-            bcrypt.compare(req.value.body.pass_word, userLogin[0].pass_word, (err, result) => {
+            bcrypt.compare(req.body.pass_word, userLogin[0].pass_word, (err, result) => {
                 if (err) {
                     jsonHelpper.failJson(500, res, err, 'Auth failed');
                 }

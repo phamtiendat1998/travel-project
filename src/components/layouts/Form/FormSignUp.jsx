@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import InputGroup from './../../common/Input/InputGroup';
-import CheckBoxGroup from '../../common/Input/CheckBoxGroup';
 import Para from './../../common/Paragraph/Para';
 import ButtonLogin from '../../common/Button/ButtonLogin';
 
@@ -28,8 +27,8 @@ export default class FormSignUp extends Component {
         this.state = {
             labelContent: {
                 userName: "Username",
-                passWord: "Password",
-                rpPassWord: "New Password",
+                passWord: "New Password",
+                rpPassWord: "Repeat Password",
                 email: "Email"
             }
         };
@@ -75,10 +74,6 @@ export default class FormSignUp extends Component {
                     regex={/^[a-z][a-z0-9_.]{5,32}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$/}
                     contentAlert="Không đúng định dạng email"
                 ></InputGroup>
-                <CheckBoxGroup>
-                    <CheckBoxGroup.CheckBox type="checkbox"></CheckBoxGroup.CheckBox>
-                    <CheckBoxGroup.Para>Agree to the terms</CheckBoxGroup.Para>
-                </CheckBoxGroup>
                 <ButtonWrapper>
                     <ButtonLogin>Register</ButtonLogin>
                 </ButtonWrapper>

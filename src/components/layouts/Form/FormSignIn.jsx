@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import InputGroup from './../../common/Input/InputGroup';
-import CheckBoxGroup from '../../common/Input/CheckBoxGroup';
+import CheckBox from '../../common/Input/CheckBox';
 import Para from './../../common/Paragraph/Para';
 import ButtonLogin from '../../common/Button/ButtonLogin';
 
@@ -26,27 +26,50 @@ export default class FormSignIn extends Component {
         super(props);
         this.getValueFromGroup = this.getValueFromGroup.bind(this);
         this.handleClickSignIn = this.handleClickSignIn.bind(this);
+        this.handleDisableLogin = this.handleDisableLogin.bind(this);
         this.state = {
             labelContent: {
                 userName: "Username",
                 passWord: "Password"
+            },
+            disaButtonLogin: true,
+            user_name: {
+                value: '',
+                isValid: false
+            },
+            pass_word: {
+                value: '',
+                isValid: false
             }
         };
     }
     getValueFromGroup(input) {
-        const { name, value } = input;
-        const nextState = { ...this.state[name] };
-        nextState.value = value;
-        this.setState({ [name]: nextState });
+        let nextState = { ...this.state[input.name] };
+        nextState.value = input.value;
+        nextState.isValid = input.isValid;
+        this.setState({ [input.name]: nextState }, this.handleDisableLogin);
+        this.handleDisableLogin();
     }
-    handleClickSignIn(event){
+    handleDisableLogin() {
+        if (this.state.user_name.isValid === true && this.state.pass_word.isValid === true) {
+            this.setState({ disaButtonLogin: false });
+        } else {
+            this.setState({ disaButtonLogin: true });
+        }
+    }
+    handleClickSignIn(event) {
         event.preventDefault();
+        let user = {
+            user_name: this.state.user_name.value,
+            pass_word: this.state.pass_word.value
+        }
+        this.props.handleLogin(user);
     }
     render() {
         return (
             <SignInWrapper statusSignIn={this.props.statusSignIn}>
                 <Para.FontTitle>We are <Para.FontSpanBoldRed>F-i</Para.FontSpanBoldRed></Para.FontTitle>
-                <Para.FontP style={styleFontP} colorVaule={props => props.theme.txtGrayColor}>Welcome Back, Please login to your account.</Para.FontP>
+                <Para.FontP style={styleFontP} colorVaule={props => this.props.alertStatus ? props.theme.colorRed : props.theme.txtGrayColor}>{this.props.alertData}</Para.FontP>
                 <InputGroup
                     alertDefault={false}
                     labelContent={this.state.labelContent.userName}
@@ -59,7 +82,7 @@ export default class FormSignIn extends Component {
                 ></InputGroup>
                 <InputGroup
                     alertDefault={false}
-                    labelContent={this.state.labelContent.userName}
+                    labelContent={this.state.labelContent.passWord}
                     typeInput={"password"}
                     placeHolder={"example123@"}
                     name={"pass_word"}
@@ -67,12 +90,11 @@ export default class FormSignIn extends Component {
                     regex={/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/}
                     contentAlert="Gồm 8 kí tự trở lên, không chứa kí tự đặc biệt, ít nhất 1 chữ hoa"
                 ></InputGroup>
-                <CheckBoxGroup>
-                    <CheckBoxGroup.CheckBox type="checkbox"></CheckBoxGroup.CheckBox>
-                    <CheckBoxGroup.Para>Remember me</CheckBoxGroup.Para>
-                </CheckBoxGroup>
+                <CheckBox label="Remember me"></CheckBox>
                 <ButtonWrapper>
-                    <ButtonLogin type="button" onClick={this.handleClickSignIn}>Login</ButtonLogin>
+                    <ButtonLogin disabled={this.state.disaButtonLogin} onClick={this.handleClickSignIn}>
+                        Login
+                    </ButtonLogin>
                 </ButtonWrapper>
                 <Para.FontP colorVaule={props => props.theme.txtGrayColor}>By signing up, you agree to F-i's</Para.FontP>
                 <Para.FontP>Terms and Conditions</Para.FontP>
