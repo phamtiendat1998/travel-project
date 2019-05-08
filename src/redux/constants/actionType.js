@@ -1,4 +1,1 @@
-export const actTypeUser = {
-    LOGIN_USER: "LOGIN_USER",
-    ADD_USER: "ADD_USER"
-}
+export const LOGIN_USER = "LOGIN_USER";

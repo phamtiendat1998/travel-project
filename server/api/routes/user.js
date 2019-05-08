@@ -3,6 +3,7 @@ const router = require('express-promise-router')();
 const UserControler = require('../controllers/user');
 
 const { validateParam, validateBody, schemas } = require('./../../helpers/routerHepper');
+
 // Handle list
 router.route('/')
     .get(UserControler.index)
@@ -17,9 +18,9 @@ router.route('/:user_id')
 
 // Sign in
 router.route('/signin')
-    // localhost:3000/user/signin
+    // localhost:4000/user/signin
     .post(validateBody(schemas.accountSchema), UserControler.login);
-    
+
 // Sign Up
 router.route('/signup')
     .post(validateBody(schemas.userSchema), UserControler.newUser);

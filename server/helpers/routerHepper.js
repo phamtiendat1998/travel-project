@@ -4,7 +4,7 @@ const jsonHelpper = require('./jsonHelpper');
 module.exports = {
     validateParam: (schema, name) => {
         return (req, res, next) => {
-            const result = Joi.validate({ param: req['params'][name] }, schema);
+            const result = Joi.validate({ [name]: req['params'][name] }, schema);
             if (result.error) {
                 jsonHelpper.failJson(400, res, result.error);
             } else {
@@ -38,7 +38,6 @@ module.exports = {
             user_name: Joi.string().regex(/^(?!.*__.*)(?!.*\.\..*)[a-z0-9_.]+$/).required(),
             pass_word: Joi.string().regex(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/).required(),
             category_acc: Joi.string().required(),
-            status: Joi.boolean().required()
         }),
         userOptionalSchema: Joi.object().keys({
             first_name: Joi.string().regex(/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/),

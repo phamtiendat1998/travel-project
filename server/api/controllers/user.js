@@ -11,45 +11,50 @@ module.exports = {
     },
 
     newUser: async (req, res, next) => {
-        const newUser = new User(req.value.body);
-        const oldUserAcc = User.find({ user_name: req.value.body.user_name });
+        const oldUserAcc = await User.find({ user_name: req.body.user_name });
         if (oldUserAcc.length > 0) {
             jsonHelpper.failJson(500, res, 'account', 'Account existed');
         } else {
+            const newUser = new User(req.body);
             newUser._id = new mongoose.Types.ObjectId();
-            bcrypt.hash(req.value.body.pass_word, 10, (err, hash) => {
-                if (err) {
-                    jsonHelpper.failJson(500, res, err);
-                } else {
-                    newUser.pass_word = hash;
-                };
-            });
+            newUser.pass_word = bcrypt.hashSync(newUser.pass_word, 10);
             const user = await newUser.save();
             jsonHelpper.successJson(200, res, user);
         };
     },
-    login: async (req, res, next) => {  
+    loginWithToken: async (req, res, next) => {
         const userLogin = await User.find({ user_name: req.body.user_name });
         if (userLogin.length < 1) {
             jsonHelpper.failJson(500, res, 'account', 'Account not found');
         } else {
-            bcrypt.compare(req.body.pass_word, userLogin[0].pass_word, (err, result) => {
-                if (err) {
-                    jsonHelpper.failJson(500, res, err, 'Auth failed');
-                }
-                if (result) {
-                    const token = jwt.sign({
-                        userId: userLogin[0]._id,
-                        userName: userLogin[0].user_name
-                    },
-                        'secret',
-                        {
-                            expiresIn: '1h'
-                        });
-                    return jsonHelpper.successJson(200, res, token, 'Login successfull');
-                }
-            });
+            const match = await bcrypt.compare(req.body.pass_word, userLogin[0].pass_word);
+            if (match) {
+                const token = jwt.sign({
+                    userId: userLogin[0]._id,
+                },
+                    'secret',
+                    {
+                        expiresIn: '1h'
+                    });
+                return jsonHelpper.successJson(200, res, token, 'Login successfull');
+            }
         };
+    },
+    checkTokenUser: async (req, res, next) => {
+        const decoded = await jwt.verify(req.params.token, 'secret');
+    },
+    login: async (req, res, next) => {
+        const userLogin = await User.find({ user_name: req.body.user_name });
+        if (userLogin.length < 1) {
+            jsonHelpper.failJson(500, res, 'account', 'Account not found');
+        } else {
+            const match = await bcrypt.compare(req.body.pass_word, userLogin[0].pass_word);
+            if (match) {
+                jsonHelpper.successJson(200, res, userLogin, 'Login successfull');
+            } else {
+                jsonHelpper.failJson(500, res, 'pass_word', 'Pass Word is wrong');
+            }
+        }
     },
     getUser: async (req, res, next) => {
         const { user_id } = req.value.params;
@@ -74,7 +79,7 @@ module.exports = {
     },
 
     deleteUser: async (req, res, next) => {
-        const { user_id } = req.value.params;
+        const { user_id } = req.params;
         const user = await User.findByIdAndDelete(user_id);
         jsonHelpper.successJson(200, res, user);
     }

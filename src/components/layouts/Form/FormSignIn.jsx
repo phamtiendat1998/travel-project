@@ -67,7 +67,7 @@ export default class FormSignIn extends Component {
     }
     render() {
         return (
-            <SignInWrapper statusSignIn={this.props.statusSignIn}>
+            <SignInWrapper onSubmit={this.handleClickSignIn} statusSignIn={this.props.statusSignIn}>
                 <Para.FontTitle>We are <Para.FontSpanBoldRed>F-i</Para.FontSpanBoldRed></Para.FontTitle>
                 <Para.FontP style={styleFontP} colorVaule={props => this.props.alertStatus ? props.theme.colorRed : props.theme.txtGrayColor}>{this.props.alertData}</Para.FontP>
                 <InputGroup
@@ -92,7 +92,7 @@ export default class FormSignIn extends Component {
                 ></InputGroup>
                 <CheckBox label="Remember me"></CheckBox>
                 <ButtonWrapper>
-                    <ButtonLogin disabled={this.state.disaButtonLogin} onClick={this.handleClickSignIn}>
+                    <ButtonLogin type="submit" disabled={this.state.disaButtonLogin}>
                         Login
                     </ButtonLogin>
                 </ButtonWrapper>
