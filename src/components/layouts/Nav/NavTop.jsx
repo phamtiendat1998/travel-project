@@ -5,6 +5,7 @@ import styled from 'styled-components'
 // Components
 import Nav from './Nav'
 import Para from '../../common/Paragraph/Para'
+import UserDropdownContainer from './../UserDropdown/UserDropdownContainer';
 
 // Style
 const Logo = styled.div`
@@ -61,7 +62,7 @@ export default class Navtop extends Component {
         <Nav.Item hoverTop borderLeft widthValue={props => props.theme.widthNavItem}>
           <Nav.Item.Icon><i className="far fa-flag"></i></Nav.Item.Icon>
         </Nav.Item>
-        <Link style={{
+        {/* <Link style={{
           textDecoration: 'none',
           color: 'black'
         }} to="/login">
@@ -69,7 +70,10 @@ export default class Navtop extends Component {
             <Nav.Item.Icon marginValue='0 5px'><i className="fas fa-user"></i></Nav.Item.Icon>
             <Para.FontNav>Login</Para.FontNav>
           </Nav.Item>
-        </Link>
+        </Link> */}
+        <Nav.Item hoverTop borderLeft widthValue={props => props.theme.widthNavItem}>
+          <UserDropdownContainer></UserDropdownContainer>
+        </Nav.Item>
         <Nav.Item hoverTop borderLeft widthValue={props => props.theme.widthNavItem}>
           <Para.FontNav>Help/Suport</Para.FontNav>
         </Nav.Item>

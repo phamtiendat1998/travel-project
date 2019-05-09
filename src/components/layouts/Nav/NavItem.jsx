@@ -14,7 +14,7 @@ const NavItem = styled.div.attrs(({ widthValue }) => ({
     transition: all 0.5s;
     cursor: pointer;
     position: relative;
-    overflow: hidden;
+    // overflow: hidden;
     &::before{
         content: "";
         position: absolute;
@@ -28,12 +28,12 @@ const NavItem = styled.div.attrs(({ widthValue }) => ({
         border-radius: ${props => props.hoverTop ? "0 0 50% 50%" : "50% 50% 0 0"};
         z-index: -1;
     };
-    &:hover,  &:hover span{
-        color: white;
-    }
-    &:hover::before{
-        height: 180%;      
-    };
+    // &:hover,  &:hover span{
+    //     color: white;
+    // }
+    // &:hover::before{
+    //     height: 180%;      
+    // };
 `;
 const Icon = styled.span.attrs(({ marginValue }) => ({
     marginIcon: marginValue
