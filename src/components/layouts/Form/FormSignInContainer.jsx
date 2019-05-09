@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import FormSignIn from "./FormSignIn";
 import Axios from "axios";
-import { connect } from "react-redux";
-import { actLoginUser } from "./../../../redux/actions/login";
 
 export class FormSignInContainer extends Component {
     constructor(props) {
@@ -13,19 +11,33 @@ export class FormSignInContainer extends Component {
             alertData: 'Welcome Back, Please login to your account.'
         }
     }
-    handleLoginUser(user) {
+    handleLoginUser(user, ckbRemember) {
+        console.log(ckbRemember);
         Axios.post('http://localhost:4000/users/signin', {
             user_name: user.user_name,
             pass_word: user.pass_word
         })
             .then(res => {
-                this.props.onLoginUser(res.data.data[0]);
+                const user = res.data.data[0];
+                if (ckbRemember) {
+                    localStorage.setItem('userLogin', user);
+                } else {
+                    sessionStorage.setItem('userLogin', user);
+                }
             })
             .catch(err => {
-                this.setState({
-                    alertStatus: true,
-                    alertData: err.response.data.message
-                });
+                if (err.response !== undefined) {
+                    this.setState({
+                        alertStatus: true,
+                        alertData: err.response.data.message
+                    });
+                } else {
+                    this.setState({
+                        alertStatus: true,
+                        alertData: 'Network error 404. Please comeback later.'
+                    });
+                }
+
             });
     }
     render() {
@@ -39,11 +51,5 @@ export class FormSignInContainer extends Component {
         )
     }
 }
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onLoginUser: (user) => {
-            dispatch(actLoginUser(user));
-        }
-    }
-}
-export default connect(null, mapDispatchToProps)(FormSignInContainer);
+
+export default FormSignInContainer;

@@ -39,7 +39,7 @@ export default class FormSignUp extends Component {
                 <Para.FontTitle>Welcome to <Para.FontSpanBoldRed>F-i</Para.FontSpanBoldRed></Para.FontTitle>
                 <Para.FontP style={styleFontP} colorVaule={props => props.theme.txtGrayColor}>Please fill in all field to create a new account.</Para.FontP>
                 <InputGroup
-                    alertDefault={false}
+                    alertDefault={0}
                     labelContent={this.state.labelContent.userName}
                     typeInput={"input"}
                     placeHolder={"example123"}
@@ -48,7 +48,7 @@ export default class FormSignUp extends Component {
                     contentAlert="Không chứa dấu, không chứa kí tự (khoảng trắng, kí tự đặc biệt ngoại trừ '_')"
                 ></InputGroup>
                 <InputGroup
-                    alertDefault={false}
+                    alertDefault={0}
                     labelContent={this.state.labelContent.passWord}
                     typeInput={"password"}
                     placeHolder={"example123@"}
@@ -57,7 +57,7 @@ export default class FormSignUp extends Component {
                     contentAlert="Gồm 8 kí tự trở lên, không chứa kí tự đặc biệt, ít nhất 1 chữ hoa"
                 ></InputGroup>
                 <InputGroup
-                    alertDefault={false}
+                    alertDefault={0}
                     labelContent={this.state.labelContent.rpPassWord}
                     typeInput={"password"}
                     placeHolder={"example123@"}
@@ -66,7 +66,7 @@ export default class FormSignUp extends Component {
                     contentAlert="Gồm 8 kí tự trở lên, không chứa kí tự đặc biệt, ít nhất 1 chữ hoa"
                 ></InputGroup>
                 <InputGroup
-                    alertDefault={false}
+                    alertDefault={0}
                     labelContent={this.state.labelContent.email}
                     typeInput={"input"}
                     placeHolder={"example123@gmail.com"}

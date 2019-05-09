@@ -69,7 +69,6 @@ export default class SideBar extends Component {
             Inovation <br /> Airlines
         </Para.FontTitle>
         </SideBarText>
-
         <SideBarBot>
           <Para.FontP2 style={StyleText}>
             Book a flight

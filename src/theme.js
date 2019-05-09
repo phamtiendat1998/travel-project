@@ -44,7 +44,7 @@ const theme = {
     sizeLogoXl: '30px',
     // Box Shadow
     boxSNav: '0px 0px 5px #0000004f',
-    boxSInputGroup: '0px 0px 3px 0px #80808040',
+    boxSInputGroup: '0px 0px 15px 0px #80808040',
 }
 
 export default theme

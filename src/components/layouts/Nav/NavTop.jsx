@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import styled from 'styled-components'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 // Components
 import Nav from './Nav'
@@ -17,7 +17,7 @@ const Logo = styled.div`
   align-items: center;
   font-size: ${props => props.theme.sizeLogoXl};
   color: white;
-`
+`;
 
 const SearchBar = styled.div`
   height: 100%;
@@ -25,14 +25,14 @@ const SearchBar = styled.div`
   align-items: center;
   justify-content: start;
   flex-grow: 1;
-`
+`;
 
 const SearchBarIcon = styled.div`
   color: ${props => props.theme.txtGrayColor};
   display: flex;
   align-items: center;
   justify-content: start;
-`
+`;
 
 const SearchInput = styled.input`
   border: none;
@@ -45,10 +45,27 @@ const SearchInput = styled.input`
     color: ${props => props.theme.txtGrayColor};
     font-size: ${props => props.theme.fontNavXl}
   }
-
-`
+`;
 
 export default class Navtop extends Component {
+  renderUserLogin = () => {
+    if (this.props.stateLogin === true) {
+      return <Nav.Item hoverTop borderLeft widthValue={props => props.theme.widthNavItem}>
+        <UserDropdownContainer></UserDropdownContainer>
+      </Nav.Item>
+    } else {
+      return <Link style={{
+        textDecoration: 'none',
+        color: 'black'
+      }}
+        to="/login">
+        <Nav.Item hoverTop borderLeft widthValue={props => props.theme.widthNavItem}>
+          <Nav.Item.Icon marginValue='0 5px'><i className="fas fa-user"></i></Nav.Item.Icon>
+          <Para.FontNav>Login</Para.FontNav>
+        </Nav.Item>
+      </Link>
+    }
+  };
   render() {
     return (
       <Nav top>
@@ -62,18 +79,7 @@ export default class Navtop extends Component {
         <Nav.Item hoverTop borderLeft widthValue={props => props.theme.widthNavItem}>
           <Nav.Item.Icon><i className="far fa-flag"></i></Nav.Item.Icon>
         </Nav.Item>
-        {/* <Link style={{
-          textDecoration: 'none',
-          color: 'black'
-        }} to="/login">
-          <Nav.Item hoverTop borderLeft widthValue={props => props.theme.widthNavItem}>
-            <Nav.Item.Icon marginValue='0 5px'><i className="fas fa-user"></i></Nav.Item.Icon>
-            <Para.FontNav>Login</Para.FontNav>
-          </Nav.Item>
-        </Link> */}
-        <Nav.Item hoverTop borderLeft widthValue={props => props.theme.widthNavItem}>
-          <UserDropdownContainer></UserDropdownContainer>
-        </Nav.Item>
+        {this.renderUserLogin()}
         <Nav.Item hoverTop borderLeft widthValue={props => props.theme.widthNavItem}>
           <Para.FontNav>Help/Suport</Para.FontNav>
         </Nav.Item>

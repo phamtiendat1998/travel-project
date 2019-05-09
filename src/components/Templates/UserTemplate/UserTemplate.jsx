@@ -4,11 +4,14 @@ import styled from 'styled-components';
 
 // Components
 import Intro from '../../page/Intro/Intro';
-import NavTop from '../../layouts/Nav/NavTop';
+import NavTopContainer from '../../layouts/Nav/NavTopContainer';
 import NavBot from '../../layouts/Nav/NavBot';
 import Login from '../../page/Login/Login';
 import Fly from './../../page/Fly/Fly';
 // Style
+const Wrapper = styled.div`
+    width: 100%;
+`;
 const MainWrapper = styled.div`
     width: 100%;
     height: ${props => props.theme.heightMainXl};
@@ -22,8 +25,8 @@ const MainWrapper = styled.div`
 export default class UserTemplate extends Component {
     render() {
         return (
-            <div>
-                <NavTop />
+            <Wrapper>
+                <NavTopContainer />
                 <MainWrapper>
                     <Switch>
                         <Route exact path='/' component={Intro} />
@@ -32,7 +35,7 @@ export default class UserTemplate extends Component {
                     </Switch>
                 </MainWrapper>
                 <NavBot />
-            </div>
+            </Wrapper>
         )
     }
 }

@@ -24,6 +24,7 @@ const ButtonWrapper = styled.div`
 export default class FormSignIn extends Component {
     constructor(props) {
         super(props);
+        this.getValueFromCheckBox = this.getValueFromCheckBox.bind(this);
         this.getValueFromGroup = this.getValueFromGroup.bind(this);
         this.handleClickSignIn = this.handleClickSignIn.bind(this);
         this.handleDisableLogin = this.handleDisableLogin.bind(this);
@@ -40,8 +41,12 @@ export default class FormSignIn extends Component {
             pass_word: {
                 value: '',
                 isValid: false
-            }
+            },
+            ckbRemember: false
         };
+    }
+    getValueFromCheckBox(input) {
+        this.setState({ ckbRemember: input.checked });
     }
     getValueFromGroup(input) {
         let nextState = { ...this.state[input.name] };
@@ -63,7 +68,7 @@ export default class FormSignIn extends Component {
             user_name: this.state.user_name.value,
             pass_word: this.state.pass_word.value
         }
-        this.props.handleLogin(user);
+        this.props.handleLogin(user, this.state.ckbRemember);
     }
     render() {
         return (
@@ -71,7 +76,7 @@ export default class FormSignIn extends Component {
                 <Para.FontTitle>We are <Para.FontSpanBoldRed>F-i</Para.FontSpanBoldRed></Para.FontTitle>
                 <Para.FontP style={styleFontP} colorVaule={props => this.props.alertStatus ? props.theme.colorRed : props.theme.txtGrayColor}>{this.props.alertData}</Para.FontP>
                 <InputGroup
-                    alertDefault={false}
+                    alertDefault={0}
                     labelContent={this.state.labelContent.userName}
                     typeInput={"input"}
                     placeHolder={"example123"}
@@ -81,7 +86,7 @@ export default class FormSignIn extends Component {
                     contentAlert="Không chứa dấu, không chứa kí tự (khoảng trắng, kí tự đặc biệt ngoại trừ '_')"
                 ></InputGroup>
                 <InputGroup
-                    alertDefault={false}
+                    alertDefault={0}
                     labelContent={this.state.labelContent.passWord}
                     typeInput={"password"}
                     placeHolder={"example123@"}
@@ -90,7 +95,7 @@ export default class FormSignIn extends Component {
                     regex={/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/}
                     contentAlert="Gồm 8 kí tự trở lên, không chứa kí tự đặc biệt, ít nhất 1 chữ hoa"
                 ></InputGroup>
-                <CheckBox label="Remember me"></CheckBox>
+                <CheckBox handleGetValue={this.getValueFromCheckBox} value="ckbRemember" label="Remember me"></CheckBox>
                 <ButtonWrapper>
                     <ButtonLogin type="submit" disabled={this.state.disaButtonLogin}>
                         Login

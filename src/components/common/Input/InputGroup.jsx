@@ -8,9 +8,12 @@ const InputGroupWrapper = styled.div`
     background-color: white;
     padding: 1% 2%;
     margin-bottom: 2%;
-    border : 1px solid ${props => props.alert ? props.theme.colorRed : props.theme.borderGrayColor};
-    box-shadow: ${props => props.focusStatus ? props.theme.boxSInputGroup : "none"};
+    border : 1.5px solid ${props => props.alert === 0 ? props.theme.borderGrayColor + "!important" : null};
+    border : 1.5px solid ${props => props.alert === true ? props.theme.colorRed + "!important" : null};
+    border : 1.5px solid ${props => props.alert === false ? props.theme.colorBlue + "!important" : null};
+    box-shadow: ${ props => props.statusFocus ? props.theme.boxSInputGroup : "none"};
     transition: 0.5s;
+    border-radius: 10px;
     position: relative;
 `;
 
@@ -31,6 +34,10 @@ export default class InputGroup extends Component {
     this.alert = {
       null: "Không được để trống",
     }
+  }
+  componentDidMount() {
+    console.log(this.state.statusAlert);
+
   }
   turnOnAlert(message) {
     this.setState({
@@ -79,9 +86,11 @@ export default class InputGroup extends Component {
     });
   }
   render() {
+    let StatusFocus = this.state.statusFocus;
+    let StatusAlert = this.state.statusAlert;
     return (
-      <InputGroupWrapper alert={this.state.statusAlert}>
-        <Label statusAlert={this.state.statusAlert} statusFocus={this.state.statusFocus}>{this.state.contentLabel}</Label>
+      <InputGroupWrapper statusFocus={StatusFocus} alert={StatusAlert}>
+        <Label statusAlert={StatusAlert} statusFocus={StatusFocus}>{this.state.contentLabel}</Label>
         <Input onChange={this.handleValidateInput} onFocus={this.handleFocusInput} onBlur={this.handleBlurInput} type={this.props.typeInput} placeholder={this.props.placeHolder} name={this.props.name}></Input>
       </InputGroupWrapper>
     )
