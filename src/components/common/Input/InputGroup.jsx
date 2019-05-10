@@ -35,10 +35,6 @@ export default class InputGroup extends Component {
       null: "Không được để trống",
     }
   }
-  componentDidMount() {
-    console.log(this.state.statusAlert);
-
-  }
   turnOnAlert(message) {
     this.setState({
       statusAlert: true,
@@ -88,10 +84,13 @@ export default class InputGroup extends Component {
   render() {
     let StatusFocus = this.state.statusFocus;
     let StatusAlert = this.state.statusAlert;
+    let PlaceHolder = this.props.placeHolder;
+    let TypeInput = this.props.typeInput;
+    let NameInput = this.props.name;
     return (
       <InputGroupWrapper statusFocus={StatusFocus} alert={StatusAlert}>
         <Label statusAlert={StatusAlert} statusFocus={StatusFocus}>{this.state.contentLabel}</Label>
-        <Input onChange={this.handleValidateInput} onFocus={this.handleFocusInput} onBlur={this.handleBlurInput} type={this.props.typeInput} placeholder={this.props.placeHolder} name={this.props.name}></Input>
+        <Input onChange={this.handleValidateInput} onFocus={this.handleFocusInput} onBlur={this.handleBlurInput} type={TypeInput} placeholder={PlaceHolder} name={NameInput}></Input>
       </InputGroupWrapper>
     )
   }

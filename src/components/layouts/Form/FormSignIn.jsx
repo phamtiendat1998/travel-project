@@ -53,7 +53,6 @@ export default class FormSignIn extends Component {
         nextState.value = input.value;
         nextState.isValid = input.isValid;
         this.setState({ [input.name]: nextState }, this.handleDisableLogin);
-        this.handleDisableLogin();
     }
     handleDisableLogin() {
         if (this.state.user_name.isValid === true && this.state.pass_word.isValid === true) {
@@ -78,7 +77,7 @@ export default class FormSignIn extends Component {
                 <InputGroup
                     alertDefault={0}
                     labelContent={this.state.labelContent.userName}
-                    typeInput={"input"}
+                    typeInput={"text"}
                     placeHolder={"example123"}
                     name={"user_name"}
                     handleGetValue={this.getValueFromGroup}
