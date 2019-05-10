@@ -1,13 +1,13 @@
 const theme = {
     // Font
-    fontNavXl: '15px',
-    fontNavIconXl: '18px',
-    fontLabel: '15px',
-    fontInput: '20px',
-    fontP: '15px',
-    fontP2: '20px',
-    fontTitle: '50px',
-    fontInputAlert: '15px',
+    fontNavXl: '1em',
+    fontNavIconXl: '1em',
+    fontLabel: '1em',
+    fontInput: '1.3em',
+    fontP: '1em',
+    fontP2: '1.3em',
+    fontTitle: '3em',
+    fontInputAlert: '1em',
     // Font Weight
     fw1: '500',
     // Color
@@ -24,7 +24,7 @@ const theme = {
     txtGrayColor: '#bbb7b7',
     btnRedColor: '#e33d25',
     borderGrayColor: '#bbb7b759',
-    bgTopSideBar:'#757171',
+    bgTopSideBar: '#757171',
     bgBotSideBar: '#BBB7B7',
     TxtSideBar: '#C29B61',
     // Width
