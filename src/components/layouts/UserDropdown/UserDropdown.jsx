@@ -38,6 +38,7 @@ export class UserDropdown extends Component {
         super(props);
         this.handleToggle = this.handleToggle.bind(this);
         this.handleClose = this.handleClose.bind(this);
+        this.handleLogOut = this.handleLogOut.bind(this);
         this.state = {
             openToggle: false
         }
@@ -50,6 +51,10 @@ export class UserDropdown extends Component {
             return;
         }
         this.setState({ openToggle: false });
+    }
+    handleLogOut(event) {
+        this.handleClose(event);
+        this.props.handleLogOut();
     }
     render() {
         const { classes } = this.props;
@@ -81,7 +86,7 @@ export class UserDropdown extends Component {
                                     <MenuList>
                                         <MenuItem className={classes.menuTitle} onClick={this.handleClose}>Hi, Đạt</MenuItem>
                                         <MenuItem onClick={this.handleClose}>Profile</MenuItem>
-                                        <MenuItem onClick={this.handleClose}>Logout</MenuItem>
+                                        <MenuItem onClick={this.handleLogOut}>Logout</MenuItem>
                                     </MenuList>
                                 </ClickAwayListener>
                             </Paper>
@@ -92,7 +97,6 @@ export class UserDropdown extends Component {
         )
     }
 }
-// eslint-disable-next-line react/no-typos
 UserDropdown.propTypes = {
     classes: PropTypes.object.isRequired,
 };

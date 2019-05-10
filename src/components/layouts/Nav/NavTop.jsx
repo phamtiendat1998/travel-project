@@ -5,7 +5,7 @@ import styled from 'styled-components';
 // Components
 import Nav from './Nav'
 import Para from '../../common/Paragraph/Para'
-import UserDropdownContainer from './../UserDropdown/UserDropdownContainer';
+import UserDropdown from './../UserDropdown/UserDropdown';
 
 // Style
 const Logo = styled.div`
@@ -51,7 +51,7 @@ export default class Navtop extends Component {
   renderUserLogin = () => {
     if (this.props.stateLogin === true) {
       return <Nav.Item hoverTop borderLeft widthValue={props => props.theme.widthNavItem}>
-        <UserDropdownContainer></UserDropdownContainer>
+        <UserDropdown handleLogOut={this.props.handleLogOut}></UserDropdown>
       </Nav.Item>
     } else {
       return <Link style={{

@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import FormSignIn from "./FormSignIn";
 import Axios from "axios";
+import { connect } from "react-redux";
+import { actLoginUser } from "./../../../redux/actions/login";
 
 export class FormSignInContainer extends Component {
     constructor(props) {
@@ -12,18 +14,23 @@ export class FormSignInContainer extends Component {
         }
     }
     handleLoginUser(user, ckbRemember) {
-        console.log(ckbRemember);
         Axios.post('http://localhost:4000/users/signin', {
             user_name: user.user_name,
             pass_word: user.pass_word
         })
             .then(res => {
                 const user = res.data.data[0];
+                const userJson = JSON.stringify(user);
                 if (ckbRemember) {
-                    localStorage.setItem('userLogin', user);
+                    localStorage.setItem('userLogin', userJson);
                 } else {
-                    sessionStorage.setItem('userLogin', user);
+                    sessionStorage.setItem('userLogin', userJson);
                 }
+                this.props.onLoginUser(user);
+                this.setState({
+                    alertStatus: false,
+                    alertData: 'Login successfully'
+                });
             })
             .catch(err => {
                 if (err.response !== undefined) {
@@ -51,5 +58,11 @@ export class FormSignInContainer extends Component {
         )
     }
 }
-
-export default FormSignInContainer;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onLoginUser: (user) => {
+            dispatch(actLoginUser(user));
+        }
+    }
+}
+export default connect(null, mapDispatchToProps)(FormSignInContainer);
