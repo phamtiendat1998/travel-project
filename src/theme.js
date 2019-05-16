@@ -42,6 +42,8 @@ const theme = {
     heightButtonLogin: '100px',
     //Size
     sizeLogoXl: '30px',
+    sizeMapCurl: '100px',
+    sizeMapIcon: '50px',
     // Box Shadow
     boxSNav: '0px 0px 5px #0000004f',
     boxSInputGroup: '0px 0px 15px 0px #80808040',

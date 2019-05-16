@@ -53,6 +53,18 @@ module.exports = {
             user_name: Joi.string().regex(/^(?!.*__.*)(?!.*\.\..*)[a-z0-9_.]+$/).required(),
             pass_word: Joi.string().regex(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/).required()
         }),
+        placeSchema: Joi.object().keys({
+            code: Joi.string().required(),
+            name: Joi.string().required(),
+            area: Joi.string().required(),
+            temp: Joi.string().required(),
+            location: {
+                x: Joi.number().required(),
+                y: Joi.number().required()
+            },
+            airport: Joi.array().required(),
+            category: Joi.string().required()
+        }),
         idSchema: Joi.object().keys({
             user_id: Joi.string().regex(/^[0-9a-fA-F]{24}$/).required()
         })

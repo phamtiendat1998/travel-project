@@ -24,7 +24,7 @@ export default class Fly extends Component {
       <FlyWrapper>
         <ContentWrapper>
           <Switch>
-            <Route exact path='/home' component={Home} />
+            <Route path='/' component={Home} />
           </Switch>
         </ContentWrapper>
         <SideBarWrapper>
