@@ -27,13 +27,13 @@ export default class FormSignUp extends Component {
         super(props);
         this.getValueFromGroup = this.getValueFromGroup.bind(this);
         this.getValueFromCheckbox = this.getValueFromCheckbox.bind(this);
-        this.handleDisableLogin = this.handleDisableLogin.bind(this);
+        this.handleDisableLogin = this.handleDisableReg.bind(this);
         this.handleClickRegis = this.handleClickRegis.bind(this);
         this.state = {
             labelContent: {
                 userName: "Username",
                 passWord: "New Password",
-                rpPassWord: "Repeat Password",
+                rpPassWord: "Confirm Password",
                 email: "Email"
             },
             disaButtonRegis: true,
@@ -53,7 +53,7 @@ export default class FormSignUp extends Component {
                 value: '',
                 isValid: false
             },
-            ckbAgree: false
+            ckbAgree: false,
         };
     };
     getValueFromCheckbox(input) {
@@ -63,19 +63,19 @@ export default class FormSignUp extends Component {
         let nextState = { ...this.state[input.name] };
         nextState.value = input.value;
         nextState.isValid = input.isValid;
-        this.setState({ [input.name]: nextState }, this.handleDisableLogin);
+        this.setState({ [input.name]: nextState }, this.handleDisableLogin, this.confirmPassword);
     };
     handleClickRegis(event) {
         event.preventDefault();
-        let valueInput = {
+        let user = {
             user_name: this.state.user_name.value,
             pass_word: this.state.pass_word.value,
             rp_pass_word: this.state.rp_pass_word.value,
             email: this.state.email.value,
         }
-        this.props.handleGetValue(valueInput);
+        this.props.handleGetValue(user);
     };
-    handleDisableLogin() {
+    handleDisableReg() {
         if (this.state.user_name.isValid === true && this.state.pass_word.isValid === true && this.state.rp_pass_word.isValid === true && this.state.email.isValid === true && this.state.ckbAgree === true) {
             this.setState({ disaButtonRegis: false });
         } else {
@@ -84,9 +84,9 @@ export default class FormSignUp extends Component {
     };
     render() {
         return (
-            <SignUpWrapper statusSignUp={this.props.statusSignUp}>
+            <SignUpWrapper onSubmit={this.handleClickRegis} statusSignUp={this.props.statusSignUp}>
                 <Para.FontTitle>Welcome to <Para.FontSpanBoldRed>F-i</Para.FontSpanBoldRed></Para.FontTitle>
-                <Para.FontP style={styleFontP} colorVaule={props => props.theme.txtGrayColor}>Please fill in all field to create a new account.</Para.FontP>
+                <Para.FontP style={styleFontP} colorVaule={props => this.props.alertStatus ? props.theme.colorRed : props.theme.txtGrayColor}>{this.props.alertData}</Para.FontP>
                 <InputGroup
                     alertDefault={0}
                     labelContent={this.state.labelContent.userName}
@@ -129,7 +129,7 @@ export default class FormSignUp extends Component {
                 ></InputGroup>
                 <CheckBox value="ckbAgree" handleGetValue={this.getValueFromCheckbox} label="Agree to terms"></CheckBox>
                 <ButtonWrapper>
-                    <ButtonLogin onClick={this.handleClickRegis} type="submit" disabled={this.state.disaButtonRegis}>Register</ButtonLogin>
+                    <ButtonLogin type="submit" disabled={this.state.disaButtonRegis}>Register</ButtonLogin>
                 </ButtonWrapper>
             </SignUpWrapper>
         )
