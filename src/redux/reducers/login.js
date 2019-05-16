@@ -1,13 +1,13 @@
 import { LOGIN_USER } from "./../constants/actionType";
-let LoginUser = {};
+let loginUser = {};
 
-const userLoginReducer = (state = LoginUser, action) => {
+const userLoginReducer = (state = loginUser, action ) => {
     switch (action.type) {
         case LOGIN_USER:
             let nextState = action.UserLogin;
             return nextState;
-        default: return { ...state };
+        default: return {...state};
     }
 }
 
-export default userLoginReducer;
+export default userLoginReducer

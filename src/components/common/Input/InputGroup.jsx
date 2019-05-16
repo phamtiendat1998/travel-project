@@ -87,10 +87,11 @@ export default class InputGroup extends Component {
     let PlaceHolder = this.props.placeHolder;
     let TypeInput = this.props.typeInput;
     let NameInput = this.props.name;
+    let ContentAlert = this.props.contentAlert;
     return (
       <InputGroupWrapper statusFocus={StatusFocus} alert={StatusAlert}>
         <Label statusAlert={StatusAlert} statusFocus={StatusFocus}>{this.state.contentLabel}</Label>
-        <Input onChange={this.handleValidateInput} onFocus={this.handleFocusInput} onBlur={this.handleBlurInput} type={TypeInput} placeholder={PlaceHolder} name={NameInput}></Input>
+        <Input contentAlert={ContentAlert} onChange={this.handleValidateInput} onFocus={this.handleFocusInput} onBlur={this.handleBlurInput} type={TypeInput} placeholder={PlaceHolder} name={NameInput}></Input>
       </InputGroupWrapper>
     )
   }
