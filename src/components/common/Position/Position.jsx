@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { TimelineLite } from "gsap";
+
 const Wrapper = styled.div`
     position: absolute;
     width: 0;

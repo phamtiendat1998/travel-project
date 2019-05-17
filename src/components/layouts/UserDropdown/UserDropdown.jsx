@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { withStyles } from '@material-ui/core/styles';
@@ -85,7 +86,15 @@ export class UserDropdown extends Component {
                                 <ClickAwayListener onClickAway={this.handleClose}>
                                     <MenuList>
                                         <MenuItem className={classes.menuTitle} onClick={this.handleClose}>Hi, Đạt</MenuItem>
-                                        <MenuItem onClick={this.handleClose}>Profile</MenuItem>
+                                        <MenuItem onClick={this.handleClose}>
+                                            <Link style={{
+                                                textDecoration: 'none',
+                                                color: 'black'
+                                            }}
+                                                to="/fly/profile">
+                                                Profile
+                                            </Link>
+                                        </MenuItem>
                                         <MenuItem onClick={this.handleLogOut}>Logout</MenuItem>
                                     </MenuList>
                                 </ClickAwayListener>
