@@ -16,4 +16,4 @@ const PlaceSchema = mongoose.Schema({
         versionKey: false
     });
 
-module.exports = mongoose.model('User', PlaceSchema);
+module.exports = mongoose.model('Place', PlaceSchema);

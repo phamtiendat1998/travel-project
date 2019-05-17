@@ -15,7 +15,9 @@ const theme = {
     colorRed: '#e33d25',
     colorBlue: '#508f9f',
     colorPstRed: '#e33d25',
+    colorPstURed: '#bc0202',
     colorPstBlue: '#508f9f',
+    colorPstUBlue: '#2e5a65',
     colorBfBlue: '#2e5a65',
     colorBfRed: '#bc0202',
     colorIcon: 'black',
@@ -35,6 +37,7 @@ const theme = {
     widthSideBar: '300px',
     widthButtonLogin: '100px',
     widthInputRange: '100px',
+    widthPst: '40px',
     // Height
     heightMainXl: 'calc(100% - 100px)',
     heightNavXl: '50px',
@@ -42,6 +45,7 @@ const theme = {
     heightInputGroupXl: '100px',
     heightButtonLogin: '100px',
     heightInputRange: '5px',
+    heightPst: '60px',
     //Size
     sizeLogoXl: '30px',
     sizeMapCurl: '100px',

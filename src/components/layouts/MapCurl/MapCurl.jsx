@@ -72,7 +72,9 @@ export class MapCurl extends Component {
         this.statusHoverCrull = true;
         this.state = {
             widthDefaultMap: '1600px',
-            widthChange: '1600px'
+            widthChange: '1600px',
+            heightDefaultMap: '600px',
+            heightChange: '600px'
         }
     }
     componentDidMount() {
@@ -82,7 +84,8 @@ export class MapCurl extends Component {
             .to(this.P, 0.4, { autoAlpha: 0, ease: Power2.easeIn })
             .to(this.Wrapper, 0.5, { width: '100%', height: '100%', ease: Power0.easeNone })
             .to(this.Crul, 1, { x: '100%', ease: Power2.easeOut })
-            .to(this.FeatureWrapper, 0.5, { left: '-4%', autoAlpha: 1, ease: Power4.easeOut });
+            .to(this.FeatureWrapper, 0.5, { left: '-4%', autoAlpha: 1, ease: Power4.easeOut })
+            .to(this.MapWrapper, 0.2, { borderRadius: '0', ease: Power0.easeNone });
     }
     handleClickMapCurl() {
         this.animaClickCrul.play();
@@ -100,17 +103,20 @@ export class MapCurl extends Component {
     }
     handleGetValueInputRange(value) {
         const width = parseFloat(this.state.widthDefaultMap.split('px')[0]) * value;
+        const height = parseFloat(this.state.heightDefaultMap.split('px')[0]) * value;
         const widthChange = width + 'px';
+        const heightChange = height + 'px';
         this.setState({
-            widthChange: widthChange
+            widthChange: widthChange,
+            heightChange: heightChange
         });
     }
     render() {
-        const { widthChange } = this.state;
+        const { heightChange, widthChange } = this.state;
         return (
             <Wrapper ref={Wrapper => this.Wrapper = Wrapper}>
                 <MapWrapper ref={MapWrapper => this.MapWrapper = MapWrapper}>
-                    <MapUser width={widthChange}></MapUser>
+                    <MapUser width={widthChange} height={heightChange}></MapUser>
                 </MapWrapper>
                 <FeatureWrapper ref={FeatureWrapper => this.FeatureWrapper = FeatureWrapper}>
                     <ButtonTemp></ButtonTemp>
