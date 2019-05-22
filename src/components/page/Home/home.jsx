@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components';
-import MapCurl from './../../layouts/MapCurl/MapCurl';
+import MapCurl from '../../layouts/MapCurl/MapCurl';
 
 const HomeWrapper = styled.div`
   width: 100%;
@@ -9,7 +9,7 @@ const HomeWrapper = styled.div`
   overflow:hidden;
 `;
 
-export default class Home extends Component {
+export class Home extends Component {
   render() {
     return (
       <HomeWrapper>
@@ -18,3 +18,5 @@ export default class Home extends Component {
     )
   }
 }
+
+export default Home

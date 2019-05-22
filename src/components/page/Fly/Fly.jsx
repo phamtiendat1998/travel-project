@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Route, Switch } from 'react-router-dom';
 
-import Home from './../Home/Home';
+import Home from '../Home/Home';
 import SideBar from './../../layouts/SideBar/SideBar';
+import Profile from '../Profile/Profile';
+
 
 const FlyWrapper = styled.div`
     width: 100%;
@@ -24,11 +26,12 @@ export default class Fly extends Component {
       <FlyWrapper>
         <ContentWrapper>
           <Switch>
-            <Route path='/' component={Home} />
+            <Route exact path='/fly' component={Home} />
+            <Route path='/fly/profile' component={Profile} />
           </Switch>
         </ContentWrapper>
         <SideBarWrapper>
-          <SideBar/>
+          <SideBar />
         </SideBarWrapper>
       </FlyWrapper >
     )
