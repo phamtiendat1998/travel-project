@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { TimelineLite, Power4, Power2, Power0 } from "gsap";
+import { TimelineLite, Power4, Power2, Power0 } from "gsap/all";
 import MapUser from './../../common/Map/MapUser';
 import Zoom from './../../common/Zoom/Zoom';
 import ButtonTemp from './../../common/Button/ButtonTemp';
@@ -35,17 +35,17 @@ const P = styled.p`
 `;
 const MapWrapper = styled.div`
     position: relative;
-    border-radius: 0 0 ${props => props.theme.sizeMapIcon} 0;
     width: 100%;
     height: 100%;
     overflow: hidden;
     z-index: 1;
+    transition: all 0.5s;
 `;
 const FeatureWrapper = styled.div`
     position: absolute;
     left: -100%;
     top: 20%;
-    transform: rotate(90deg);
+    transform: rotate(-90deg);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -61,20 +61,15 @@ export class MapCurl extends Component {
         this.handleMouseEnterCrul = this.handleMouseEnterCrul.bind(this);
         this.handleMouseLeave = this.handleMouseLeave.bind(this);
         this.handleGetValueInputRange = this.handleGetValueInputRange.bind(this);
-        this.Crul = null;
-        this.Wrapper = null;
-        this.MapWrapper = null;
-        this.FeatureWrapper = null;
-        this.P = null;
+        this.handleActionAnimationPos = this.handleActionAnimationPos.bind(this);
         this.animaHoverCrul = null;
         this.animaClickCrul = null;
         this.animaMap = null;
         this.statusHoverCrull = true;
         this.state = {
-            widthDefaultMap: '1600px',
-            widthChange: '1600px',
-            heightDefaultMap: '600px',
-            heightChange: '600px'
+            scaleMapDefault: 1,
+            scaleMapChange: 1,
+            statusAnimaPos: false
         }
     }
     componentDidMount() {
@@ -83,9 +78,8 @@ export class MapCurl extends Component {
         this.animaClickCrul = new TimelineLite({ paused: true })
             .to(this.P, 0.4, { autoAlpha: 0, ease: Power2.easeIn })
             .to(this.Wrapper, 0.5, { width: '100%', height: '100%', ease: Power0.easeNone })
-            .to(this.Crul, 1, { x: '100%', ease: Power2.easeOut })
+            .to(this.Crul, 1, { x: '100%', ease: Power2.easeOut, onComplete: this.handleActionAnimationPos })
             .to(this.FeatureWrapper, 0.5, { left: '-4%', autoAlpha: 1, ease: Power4.easeOut })
-            .to(this.MapWrapper, 0.2, { borderRadius: '0', ease: Power0.easeNone });
     }
     handleClickMapCurl() {
         this.animaClickCrul.play();
@@ -101,26 +95,33 @@ export class MapCurl extends Component {
             this.animaHoverCrul.reverse();
         }
     }
+    handleActionAnimationPos() {
+        if (this.state.statusAnimaPos) {
+            this.setState({
+                statusAnimaPos: false
+            });
+        } else {
+            this.setState({
+                statusAnimaPos: true
+            });
+        }
+    }
     handleGetValueInputRange(value) {
-        const width = parseFloat(this.state.widthDefaultMap.split('px')[0]) * value;
-        const height = parseFloat(this.state.heightDefaultMap.split('px')[0]) * value;
-        const widthChange = width + 'px';
-        const heightChange = height + 'px';
+        const scaleMapChange = this.state.scaleMapDefault * value;
         this.setState({
-            widthChange: widthChange,
-            heightChange: heightChange
+            scaleMapChange: scaleMapChange
         });
     }
     render() {
-        const { heightChange, widthChange } = this.state;
+        const { scaleMapChange, statusAnimaPos } = this.state;
         return (
             <Wrapper ref={Wrapper => this.Wrapper = Wrapper}>
-                <MapWrapper ref={MapWrapper => this.MapWrapper = MapWrapper}>
-                    <MapUser width={widthChange} height={heightChange}></MapUser>
+                <MapWrapper>
+                    <MapUser actionAnima={statusAnimaPos} scale={scaleMapChange}></MapUser>
                 </MapWrapper>
                 <FeatureWrapper ref={FeatureWrapper => this.FeatureWrapper = FeatureWrapper}>
                     <ButtonTemp></ButtonTemp>
-                    <Zoom valueDefault="1" step="0.1" min="0.7" max="1.5" getValue={this.handleGetValueInputRange}></Zoom>
+                    <Zoom valueDefault="1" step="0.1" min="0.5" max="2" getValue={this.handleGetValueInputRange}></Zoom>
                 </FeatureWrapper>
                 <Crul ref={Crul => this.Crul = Crul} onMouseLeave={this.handleMouseLeave} onMouseEnter={this.handleMouseEnterCrul} onClick={this.handleClickMapCurl}>
                     <P ref={P => this.P = P}>Discover</P>

@@ -36,7 +36,7 @@ const theme = {
     widthCtFly: 'calc(100% - 300px)',
     widthSideBar: '300px',
     widthButtonLogin: '100px',
-    widthInputRange: '100px',
+    widthInputRange: '150px',
     widthPst: '40px',
     // Height
     heightMainXl: 'calc(100% - 100px)',

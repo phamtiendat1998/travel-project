@@ -9,6 +9,7 @@ const Wrapper = styled.div`
     right: ${props => props.right};;
     z-index: 2;   
     background-color:  ${props => props.colorBG};
+    cursor: pointers;
     &::before {
         position: absolute;
         content: "";
@@ -29,21 +30,19 @@ const View = styled.div`
 export class Position extends Component {
     constructor(props) {
         super(props);
-        this.Wrapper = null;
-        this.animaWrapper = null;
         this.state = {
-
+            statusAnima: this.props.statusAnimaPos
         }
     }
-    // componentDidMount() {
-    //     const { width, height } = this.props;
-    //     this.animaWrapper = new TimelineLite({ paused: false })
-    //         .to(this.Wrapper, 1, { width: width, height: height });
-    // }
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            statusAnima: nextProps.statusAnimaPos
+        });
+    }
     render() {
         const { colorU, color, bottom, right } = this.props;
         return (
-            <Wrapper ref={Wrapper => this.Wrapper = Wrapper} bottom={bottom} right={right} colorBG={color} colorU={colorU}>
+            <Wrapper bottom={bottom} right={right} colorBG={color} colorU={colorU}>
                 <View></View>
             </Wrapper>
         )
