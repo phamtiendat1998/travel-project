@@ -8,10 +8,10 @@ const InputGroupWrapper = styled.div`
     background-color: white;
     padding: 1% 2%;
     margin-bottom: 2%;
-    border : 1.5px solid ${props => props.alert === 0 ? props.theme.borderGrayColor + "!important" : null};
-    border : 1.5px solid ${props => props.alert === true ? props.theme.colorRed + "!important" : null};
-    border : 1.5px solid ${props => props.alert === false ? props.theme.colorBlue + "!important" : null};
-    box-shadow: ${ props => props.statusFocus ? props.theme.boxSInputGroup : "none"};
+    border : 1.5px solid ${props => props.alert === 0 ? props.theme.Color.Gray + "!important" : null};
+    border : 1.5px solid ${props => props.alert === true ? props.theme.Color.Alert + "!important" : null};
+    border : 1.5px solid ${props => props.alert === false ? props.theme.Color.Success + "!important" : null};
+    box-shadow: ${ props => props.statusFocus ? '0px 0px 15px 0px #80808040' : "none"};
     transition: 0.5s;
     border-radius: 10px;
     position: relative;

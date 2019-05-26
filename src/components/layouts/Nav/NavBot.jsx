@@ -1,12 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-
-// Components
 import Nav from './Nav'
-import Para from '../../common/Paragraph/Para'
-
-// Style
+import P from './../../common/Paragraph/P';
 const RightButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -20,23 +16,23 @@ export default class NavBot extends Component {
           textDecoration: 'none',
           color: 'black'
         }} to="/fly">
-          <Nav.Item hoverBot borderRight widthValue={props => props.theme.widthButtonFly}>
+          <Nav.Item hoverBot borderRight widthValue={props => props.theme.Width.NavItem}>
             <Nav.Item.Icon marginValue='0 5px'><i className="fas fa-plane-departure"></i></Nav.Item.Icon>
-            <Para.FontNav>Fly</Para.FontNav>
+            <P>Fly</P>
           </Nav.Item>
         </Link>
         <RightButtonWrapper>
-          <Nav.Item hoverBot borderLeft flexColunm widthValue={props => props.theme.widthNavItem}>
+          <Nav.Item hoverBot borderLeft flexColunm widthValue={props => props.theme.Width.NavItem}>
             <Nav.Item.Icon marginValue='0 0 -4px 0'><i className="fas fa-calendar-check"></i></Nav.Item.Icon>
-            <Para.FontNav>Check in</Para.FontNav>
+            <P>Check in</P>
           </Nav.Item>
-          <Nav.Item hoverBot borderLeft flexColunm widthValue={props => props.theme.widthNavItem}>
+          <Nav.Item hoverBot borderLeft flexColunm widthValue={props => props.theme.Width.NavItem}>
             <Nav.Item.Icon marginValue='0 0 -4px 0'><i className="fas fa-calendar-check"></i></Nav.Item.Icon>
-            <Para.FontNav>Check in</Para.FontNav>
+            <P>Check in</P>
           </Nav.Item>
-          <Nav.Item hoverBot borderLeft flexColunm widthValue={props => props.theme.widthNavItem}>
+          <Nav.Item hoverBot borderLeft flexColunm widthValue={props => props.theme.Width.NavItem}>
             <Nav.Item.Icon marginValue='0 0 -4px 0'><i className="fas fa-calendar-check"></i></Nav.Item.Icon>
-            <Para.FontNav>Check in</Para.FontNav>
+            <P>Check in</P>
           </Nav.Item>
         </RightButtonWrapper>
       </Nav>

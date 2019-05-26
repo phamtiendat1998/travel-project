@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components';
-import Para from './../Paragraph/Para';
+import H5 from './../Paragraph/H5';
 
 const Wrapper = styled.div`
     background-color: white;
@@ -9,16 +9,16 @@ const Wrapper = styled.div`
     align-items: center;
 `;
 const ZoomButton = styled.div`
-    width: ${props => props.theme.sizeZoom};
-    height: ${props => props.theme.sizeZoom};
+    width: ${props => props.theme.Size.Zoom};
+    height: ${props => props.theme.Size.Zoom};
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
 `;
 const ZoomInput = styled.input`
-    width: ${props => props.theme.widthInputRange};
-    height: ${props => props.theme.heightInputRange};
+    width: ${props => props.theme.Width.InputRange};
+    height: ${props => props.theme.Height.InputRange};
     background: gray;
     outline: none;
     border-radius: 5px;
@@ -27,7 +27,7 @@ const ZoomInput = styled.input`
         cursor: pointer;
         width: 25px;
         height: 25px;
-        background: ${props => props.theme.colorRed};
+        background: ${props => props.theme.Color.Red};
         transition: all .7s;
         appearance: none;
     }
@@ -73,9 +73,9 @@ export class Zoom extends Component {
         const { step, min, max } = this.props;
         return (
             <Wrapper>
-                <ZoomButton onClick={this.handleClickMinusBtn}><Para.FontP2><i className="fas fa-search-minus"></i></Para.FontP2></ZoomButton>
+                <ZoomButton onClick={this.handleClickMinusBtn}><H5><i className="fas fa-search-minus"></i></H5></ZoomButton>
                 <ZoomInput onChange={this.handleOnChangeInput} type="range" min={min} max={max} step={step} value={valueInputRange}></ZoomInput>
-                <ZoomButton onClick={this.handleClickPlusBtn}><Para.FontP2><i className="fas fa-search-plus"></i></Para.FontP2></ZoomButton>
+                <ZoomButton onClick={this.handleClickPlusBtn}><H5><i className="fas fa-search-plus"></i></H5></ZoomButton>
             </Wrapper>
         )
     }

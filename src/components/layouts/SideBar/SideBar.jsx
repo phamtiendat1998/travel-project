@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-
-import Para from '../../common/Paragraph/Para';
+import H5 from './../../common/Paragraph/H5';
+import H2 from './../../common/Paragraph/H2';
 import Input from '../../common/Input/InputSearchTrip';
 import PositionInput from '../../common/Position/PositionInput'
 
@@ -13,7 +13,7 @@ const Sidebar = styled.div`
 const SideBarText = styled.div`
   width: 100%;
   height: 30%;
-  background-color: ${props => props.theme.bgTopSideBar};
+  background-color: ${props => props.theme.Color.TopSideBar};
   display: flex;
   flex-flow: column;
   justify-content: center;
@@ -26,7 +26,7 @@ const SideBarBot = styled.div`
   height: 70%;
   padding: 0 15px;
   padding-top: 15px;
-  background-color: ${props => props.theme.bgBotSideBar};
+  background-color: ${props => props.theme.Color.BotSideBar};
 
 `;
 
@@ -42,8 +42,8 @@ const SideBarInput = styled.div`
 
 const Span = styled.span`
   width: 50px;
-  color: ${props => props.theme.txtGrayColor};
-  font-size: ${props => props.theme.fontP};
+  color: ${props => props.theme.Color.Gray};
+  font-size: ${props => props.theme.Font.P};
   font-weight: 600;
   margin: 0 0 0 10px;
 `;
@@ -62,24 +62,24 @@ export default class SideBar extends Component {
     return (
       <Sidebar>
         <SideBarText>
-          <Para.FontP2>
+          <H5>
             Welcome to
-        </Para.FontP2>
-          <Para.FontTitle style={StyleTitle}>
+        </H5>
+          <H2 style={StyleTitle}>
             Inovation <br /> Airlines
-        </Para.FontTitle>
+        </H2>
         </SideBarText>
         <SideBarBot>
-          <Para.FontP2 style={StyleText}>
+          <H5 style={StyleText}>
             Book a flight
-        </Para.FontP2>
+        </H5>
           <SideBarInput>
-            <PositionInput colorParam={props => props.theme.colorPstRed} colorBefore={props => props.theme.colorBfRed}></PositionInput>
+            <PositionInput colorParam={props => props.theme.Color.PsRed} colorBefore={props => props.theme.Color.PsURed}></PositionInput>
             <Span>From</Span>
             <Input placeholder="Enter a city"></Input>
           </SideBarInput>
           <SideBarInput>
-            <PositionInput colorParam={props => props.theme.colorPstBlue} colorBefore={props => props.theme.colorBfBlue}></PositionInput>
+            <PositionInput colorParam={props => props.theme.Color.PsBlue} colorBefore={props => props.theme.Color.PsUBlue}></PositionInput>
             <Span>To</Span>
             <Input placeholder="Enter a city"></Input>
           </SideBarInput>

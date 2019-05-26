@@ -6,8 +6,8 @@ import Zoom from './../../common/Zoom/Zoom';
 import ButtonTemp from './../../common/Button/ButtonTemp';
 
 const Wrapper = styled.div`
-    width: ${props => props.theme.sizeMapCurl};
-    height: ${props => props.theme.sizeMapCurl};
+    width: ${props => props.theme.Size.MapCrul};
+    height: ${props => props.theme.Size.MapCrul};
     position: absolute;
     top:0;
     left: 0;
@@ -62,6 +62,7 @@ export class MapCurl extends Component {
         this.handleMouseLeave = this.handleMouseLeave.bind(this);
         this.handleGetValueInputRange = this.handleGetValueInputRange.bind(this);
         this.handleActionAnimationPos = this.handleActionAnimationPos.bind(this);
+        this.handleGetValueButtonTemp = this.handleGetValueButtonTemp.bind(this);
         this.animaHoverCrul = null;
         this.animaClickCrul = null;
         this.animaMap = null;
@@ -69,7 +70,7 @@ export class MapCurl extends Component {
         this.state = {
             scaleMapDefault: 1,
             scaleMapChange: 1,
-            statusAnimaPos: false
+            statusAnimaPos: false,
         }
     }
     componentDidMount() {
@@ -112,15 +113,18 @@ export class MapCurl extends Component {
             scaleMapChange: scaleMapChange
         });
     }
+    handleGetValueButtonTemp(value) {
+        this.setState({ isShowTemp: value.isShow });
+    }
     render() {
-        const { scaleMapChange, statusAnimaPos } = this.state;
+        const { scaleMapChange, statusAnimaPos, isShowTemp } = this.state;
         return (
             <Wrapper ref={Wrapper => this.Wrapper = Wrapper}>
                 <MapWrapper>
-                    <MapUser actionAnima={statusAnimaPos} scale={scaleMapChange}></MapUser>
+                    <MapUser isShowTemp={isShowTemp} getValueTemp={this.handleGetValueButtonTemp} actionAnima={statusAnimaPos} scale={scaleMapChange}></MapUser>
                 </MapWrapper>
                 <FeatureWrapper ref={FeatureWrapper => this.FeatureWrapper = FeatureWrapper}>
-                    <ButtonTemp></ButtonTemp>
+                    <ButtonTemp getValue={this.handleGetValueButtonTemp}></ButtonTemp>
                     <Zoom valueDefault="1" step="0.1" min="0.5" max="2" getValue={this.handleGetValueInputRange}></Zoom>
                 </FeatureWrapper>
                 <Crul ref={Crul => this.Crul = Crul} onMouseLeave={this.handleMouseLeave} onMouseEnter={this.handleMouseEnterCrul} onClick={this.handleClickMapCurl}>

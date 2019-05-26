@@ -13,11 +13,11 @@ const FlyWrapper = styled.div`
     display: flex;
 `;
 const ContentWrapper = styled.div`
-    width: ${props => props.theme.widthCtFly};
+    width: ${props => props.theme.Width.ContentFly};
     height: 100%;
 `;
 const SideBarWrapper = styled.div`
-  width: ${props => props.theme.widthSideBar};
+  width: ${props => props.theme.Width.SideBar};
   height: 100%;
 `;
 export default class Fly extends Component {

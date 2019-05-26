@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import InputGroup from './../../common/Input/InputGroup';
-import Para from './../../common/Paragraph/Para';
+import H2 from './../../common/Paragraph/H2';
+import P from './../../common/Paragraph/P';
+import Span from './../../common/Paragraph/Span';
 import CheckBox from '../../common/Input/CheckBox';
 import ButtonLogin from '../../common/Button/ButtonLogin';
 
@@ -85,8 +87,8 @@ export default class FormSignUp extends Component {
     render() {
         return (
             <SignUpWrapper onSubmit={this.handleClickRegis} statusSignUp={this.props.statusSignUp}>
-                <Para.FontTitle>Welcome to <Para.FontSpanBoldRed>F-i</Para.FontSpanBoldRed></Para.FontTitle>
-                <Para.FontP style={styleFontP} colorVaule={props => this.props.alertStatus ? props.theme.colorRed : props.theme.txtGrayColor}>{this.props.alertData}</Para.FontP>
+                <H2>Welcome to <Span color={props => props.theme.Color.Red}>F-i</Span></H2>
+                <P style={styleFontP} color={props => this.props.alertStatus ? props.theme.Color.Alert : props.theme.Color.Gray}>{this.props.alertData}</P>
                 <InputGroup
                     alertDefault={0}
                     labelContent={this.state.labelContent.userName}

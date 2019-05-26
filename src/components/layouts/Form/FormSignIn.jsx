@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import InputGroup from './../../common/Input/InputGroup';
 import CheckBox from '../../common/Input/CheckBox';
-import Para from './../../common/Paragraph/Para';
+import H2 from './../../common/Paragraph/H2';
+import P from './../../common/Paragraph/P';
+import Span from './../../common/Paragraph/Span';
 import ButtonLogin from '../../common/Button/ButtonLogin';
 
 const SignInWrapper = styled.form`
@@ -72,8 +74,8 @@ export default class FormSignIn extends Component {
     render() {
         return (
             <SignInWrapper onSubmit={this.handleClickSignIn} statusSignIn={this.props.statusSignIn}>
-                <Para.FontTitle>We are <Para.FontSpanBoldRed>F-i</Para.FontSpanBoldRed></Para.FontTitle>
-                <Para.FontP style={styleFontP} colorVaule={props => this.props.alertStatus ? props.theme.colorRed : props.theme.txtGrayColor}>{this.props.alertData}</Para.FontP>
+                <H2>We are <Span color={props => props.theme.Color.Red}>F-i</Span></H2>
+                <P style={styleFontP} color={props => this.props.alertStatus ? props.theme.Color.Alert : props.theme.Color.Gray}>{this.props.alertData}</P>
                 <InputGroup
                     alertDefault={0}
                     labelContent={this.state.labelContent.userName}
@@ -100,10 +102,10 @@ export default class FormSignIn extends Component {
                         Login
                     </ButtonLogin>
                 </ButtonWrapper>
-                <Para.FontP colorVaule={props => props.theme.txtGrayColor}>By signing up, you agree to F-i's</Para.FontP>
-                <Para.FontP>Terms and Conditions</Para.FontP>
-                <Para.FontP colorVaule={props => props.theme.txtGrayColor}>&</Para.FontP>
-                <Para.FontP>Privacy Policy</Para.FontP>
+                <P color={props => props.theme.Color.Gray}>By signing up, you agree to F-i's</P>
+                <P>Terms and Conditions</P>
+                <P color={props => props.theme.Color.Gray}>&</P>
+                <P>Privacy Policy</P>
             </SignInWrapper>
         )
     }

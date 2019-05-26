@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Checkbox from '@material-ui/core/Checkbox';
 
 const Label = styled.label`
-    font-size: ${props => props.theme.fontLabel};
+    font-size: ${props => props.theme.Font.Label};
     margin-bottom: 0;
 `;
 const CheckBoxWrapper = styled.div`
@@ -23,7 +23,7 @@ export default class CheckBox extends Component {
     handleChange() {
         const nextState = { ...this.state };
         nextState.checkBox ? nextState.checkBox = false : nextState.checkBox = true;
-        this.setState({checkBox: nextState.checkBox });
+        this.setState({ checkBox: nextState.checkBox });
         const input = {
             name: this.props.value,
             checked: nextState.checkBox

@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import styled from 'styled-components';
 
 import ButtonLogin from './../../common/Button/ButtonLogin';
-import Para from './../../common/Paragraph/Para';
+import H2 from './../../common/Paragraph/H2';
+import P from './../../common/Paragraph/P';
 
 const OverLayWrapper = styled.div`
     width: 50%;
@@ -10,7 +11,6 @@ const OverLayWrapper = styled.div`
     position : absolute;
     top: 0;
     right: 0;
-    // background-color: #0000ff29;
     transition: all 0.6s ease-in-out;
     transform: ${props => props.statusSignUp ? "translateX(-100%)" : "translateX(0)"};
     overflow: hidden; 
@@ -48,7 +48,7 @@ export default class FormOverLay extends Component {
         super(props);
         this.state = {
             statusSignIn: '',
-            statusSignUp: ''         
+            statusSignUp: ''
         };
         this.handleSignUpOL = this.handleSignUpOL.bind(this);
     }
@@ -74,13 +74,13 @@ export default class FormOverLay extends Component {
         return (
             <OverLayWrapper statusSignUp={this.state.statusSignUp}>
                 <OverLaySignIn statusSignIn={this.state.statusSignIn}>
-                    <Para.FontTitle>Already have an account?</Para.FontTitle>
-                    <Para.FontP style={styleP}>Sign in to get personalized story recommendations, follow authors and topics you love, and interact with stories.</Para.FontP>
+                    <H2>Already have an account?</H2>
+                    <P style={styleP}>Sign in to get personalized story recommendations, follow authors and topics you love, and interact with stories.</P>
                     <ButtonLogin type="button" onClick={this.handleSignUpOL}>Sign In</ButtonLogin>
                 </OverLaySignIn>
                 <OverLaySignUp statusSignUp={this.state.statusSignUp}>
-                    <Para.FontTitle>No account?</Para.FontTitle>
-                    <Para.FontP style={styleP}>Create an account to receive great stories in your inbox, personalize your homepage, and follow authors and topics that you love.</Para.FontP>
+                    <H2>No account?</H2>
+                    <P style={styleP}>Create an account to receive great stories in your inbox, personalize your homepage, and follow authors and topics that you love.</P>
                     <ButtonLogin type="button" onClick={this.handleSignUpOL}>Create One</ButtonLogin>
                 </OverLaySignUp>
             </OverLayWrapper>

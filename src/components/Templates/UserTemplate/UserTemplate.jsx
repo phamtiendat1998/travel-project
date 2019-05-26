@@ -14,9 +14,9 @@ const Wrapper = styled.div`
 `;
 const MainWrapper = styled.div`
     width: 100%;
-    height: ${props => props.theme.heightMainXl};
+    height: ${props => props.theme.Height.MainView};
     position: fixed;
-    top: ${ props => props.theme.heightNavXl};
+    top: ${ props => props.theme.Height.NavXl};
     left: 0;
     overflow: hidden;
     z-index: 1;

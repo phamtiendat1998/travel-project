@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import styled from "styled-components";
-
 import PropTypes from 'prop-types';
 import { withStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -9,7 +8,6 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import PhoneIcon from '@material-ui/icons/Phone';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import red from '@material-ui/core/colors/red';
 
 function TabContainer(props) {
     return (
@@ -43,17 +41,17 @@ const styles = theme => ({
     tabs: {
         background: 'none',
     },
-    indicatorColor:{
+    indicatorColor: {
         backgroundColor: '#e33d25'
     },
-    appbar:{
+    appbar: {
         boxShadow: 'none',
         backgroundColor: '#e0e0e0'
     }
 });
 const theme = createMuiTheme({
     palette: {
-        primary:{
+        primary: {
             main: '#e33d25'
         }
     },
@@ -86,7 +84,7 @@ export class Profile extends Component {
         return (
             <ProfileWrapper className={classes.root}>
                 <MuiThemeProvider theme={theme}>
-                    <AppBar position="static" color="inherit" classes={{root: classes.appbar}} >
+                    <AppBar position="static" color="inherit" classes={{ root: classes.appbar }} >
                         <Tabs
                             classes={{ root: classes.tab, indicator: classes.indicatorColor }}
                             value={value}
