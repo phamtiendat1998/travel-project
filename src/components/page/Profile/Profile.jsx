@@ -1,5 +1,10 @@
 import React, { Component } from 'react'
 import styled from "styled-components";
+
+import InputProfile from "../../common/Input/InputProfile";
+import LabelProfile from "../../common/Input/LabelProfile";
+import P from "../../common/Paragraph/P"
+
 import PropTypes from 'prop-types';
 import { withStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -14,6 +19,7 @@ function TabContainer(props) {
         <Typography component="div"
             style={{
                 padding: 8 * 3,
+                height: '100%',
             }}>
             {props.children}
         </Typography>
@@ -68,6 +74,17 @@ const ProfileWrapper = styled.div`
     background-color: red;
 `;
 
+const FormGroup = styled.div`
+    width: 80%;
+    padding: 10px;
+    height: 12%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    // background-color: #e8e8e8;
+`;
+
 export class Profile extends Component {
     constructor(props) {
         super(props)
@@ -99,8 +116,37 @@ export class Profile extends Component {
                             <Tab classes={{ root: classes.wrapper, label: classes.label }} label="Change password" icon={<FavoriteIcon style={{ fontSize: '1.2em' }} />} />
                         </Tabs>
                     </AppBar>
-                    {value === 0 && <TabContainer>Setting</TabContainer>}
-                    {value === 1 && <TabContainer>Change password</TabContainer>}
+                    {value === 0 && <TabContainer>
+                        <FormGroup>
+                            
+                            <LabelProfile><P>First name</P></LabelProfile>
+                            <InputProfile />
+                        </FormGroup>
+                        <FormGroup>
+                            <LabelProfile><P>Last name</P></LabelProfile>
+                            <InputProfile />
+                        </FormGroup>
+                        <FormGroup>
+                            <LabelProfile><P>Email</P></LabelProfile>
+                            <InputProfile />
+                        </FormGroup>
+                        <FormGroup>
+                            <LabelProfile><P>Date of birth</P></LabelProfile>
+                            <InputProfile />
+                        </FormGroup>
+                        <FormGroup>
+                            <LabelProfile><P>Address</P></LabelProfile>
+                            <InputProfile />
+                        </FormGroup>
+                        <FormGroup>
+                            <LabelProfile><P>Country</P></LabelProfile>
+                            <InputProfile />
+                        </FormGroup>
+                    </TabContainer>}
+                    {value === 1 && <TabContainer>
+                        <LabelProfile>Password</LabelProfile>
+                        <InputProfile />
+                    </TabContainer>}
                 </MuiThemeProvider>
             </ProfileWrapper>
         )

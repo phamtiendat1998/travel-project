@@ -11,11 +11,12 @@ body {
 }
 @media (max-width: 1600px) and (min-width: 1200px) {
   body {
-    font-size: 10px;
+    font-size: 12px;
   }
 }
 * {
   box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
 }
 
 p {
