@@ -17,26 +17,27 @@ export default class CheckBox extends Component {
         super(props);
         this.handleChange = this.handleChange.bind(this);
         this.state = {
-            checkBox: false
+            isCheck: false
         }
     }
     handleChange() {
         const nextState = { ...this.state };
-        nextState.checkBox ? nextState.checkBox = false : nextState.checkBox = true;
-        this.setState({ checkBox: nextState.checkBox });
+        nextState.isCheck ? nextState.isCheck = false : nextState.isCheck = true;
+        this.setState({ isCheck: nextState.isCheck });
         const input = {
             name: this.props.value,
-            checked: nextState.checkBox
+            checked: nextState.isCheck
         }
         this.props.handleGetValue(input);
     }
     render() {
-        let value = this.props.value;
+        const { value } = this.props;
+        const { isCheck } = this.state;
         return (
             <CheckBoxWrapper>
                 <Checkbox
                     value={value}
-                    checked={this.state.checkBox}
+                    checked={isCheck}
                     onChange={this.handleChange}
                     color="primary"
                 />

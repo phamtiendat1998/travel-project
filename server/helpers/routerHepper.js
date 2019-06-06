@@ -57,13 +57,29 @@ module.exports = {
             code: Joi.string().required(),
             name: Joi.string().required(),
             area: Joi.string().required(),
-            temp: Joi.string().required(),
+            temp: Joi.number().required(),
             location: {
                 x: Joi.number().required(),
                 y: Joi.number().required()
             },
             airport: Joi.array().required(),
             category: Joi.string().required()
+        }),
+        tripSchema: Joi.object().keys({
+            from: Joi.string().required(),
+            to: Joi.string().required(),
+            price: Joi.number().required(),
+            time: {
+                day: Joi.number().required(),
+                night: Joi.number().required()
+            },
+            timeFlight: Joi.number().required(),
+            departure: {
+                fromStart: Joi.date().required(),
+                toStart: Joi.date().required(),
+                fromEnd: Joi.date().required(),
+                toEnd: Joi.date().required(),
+            },
         }),
         idSchema: Joi.object().keys({
             user_id: Joi.string().regex(/^[0-9a-fA-F]{24}$/).required()

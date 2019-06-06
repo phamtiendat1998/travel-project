@@ -7,17 +7,17 @@ export class NavTopContainer extends Component {
     constructor(props) {
         super(props);
         this.getUserLogin = this.getUserLogin.bind(this);
-        this.handleLogin = this.handleLogin.bind(this);
+        this.handleLogIn = this.handleLogIn.bind(this);
         this.handleLogOut = this.handleLogOut.bind(this);
         this.state = {
-            stateLogin: false
+            isLogin: false
         }
     }
-    handleLogin() {
-        this.setState({ stateLogin: true });
+    handleLogIn() {
+        this.setState({ isLogin: true });
     }
     handleLogOut() {
-        this.setState({ stateLogin: false });
+        this.setState({ isLogin: false });
         sessionStorage.removeItem('userLogin');
         localStorage.removeItem('userLogin');
         const UserNull = {};
@@ -30,13 +30,14 @@ export class NavTopContainer extends Component {
         const userLoginSess = sessionStorage.getItem('userLogin');
         const userLoginLocal = localStorage.getItem('userLogin');
         if (userLoginLocal !== null) {
-            this.handleLogin();
-            this.props.onLoginUser(userLoginLocal);
+            this.handleLogIn();
+            this.props.onLoginUser(JSON.parse(userLoginLocal));
         } else {
             if (userLoginSess !== null) {
-                this.handleLogin();
+                this.handleLogIn();
+                this.props.onLoginUser(JSON.parse(userLoginSess));
             } else {
-                this.setState({ stateLogin: false });
+                this.setState({ isLogin: false });
             }
         }
     }
@@ -44,10 +45,10 @@ export class NavTopContainer extends Component {
         this.getUserLogin();
     }
     render() {
-        let UserLogin = this.props.UserLogin;
-        let StatusLogin = this.state.stateLogin
+        const { isLogin } = this.state;
+        const { UserLogin } = this.props;
         return (
-            <NavTop handleLogOut={this.handleLogOut} stateLogin={StatusLogin} userLogin={UserLogin}>
+            <NavTop handleLogOut={this.handleLogOut} isLogin={isLogin} UserLogin={UserLogin}>
             </NavTop>
         )
     }

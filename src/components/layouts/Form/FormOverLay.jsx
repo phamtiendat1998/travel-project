@@ -12,12 +12,12 @@ const OverLayWrapper = styled.div`
     top: 0;
     right: 0;
     transition: all 0.6s ease-in-out;
-    transform: ${props => props.statusSignUp ? "translateX(-100%)" : "translateX(0)"};
+    transform: ${props => props.isSignUp ? "translateX(-100%)" : "translateX(0)"};
     overflow: hidden; 
     background-image: url('./images/plane-login.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: ${props => props.statusSignUp ? "left top" : "right top"};
+    background-position: ${props => props.isSignUp ? "left top" : "right top"};
 `;
 const OverLay = styled.div`
     position : absolute;
@@ -33,11 +33,11 @@ const OverLay = styled.div`
 `;
 const OverLaySignUp = styled(OverLay)`
     right: 0;
-    transform: ${props => props.statusSignUp ? "translateX(150%)" : "translateX(0)"};
+    transform: ${props => props.isSignUp ? "translateX(150%)" : "translateX(0)"};
 `;
 const OverLaySignIn = styled(OverLay)`
     left: 0;
-    transform: ${props => props.statusSignIn ? "translateX(-150%)" : "translateX(0)"};
+    transform: ${props => props.isSignIn ? "translateX(-150%)" : "translateX(0)"};
 `;
 const styleP = {
     textAlign: 'center',
@@ -47,38 +47,39 @@ export default class FormOverLay extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            statusSignIn: '',
-            statusSignUp: ''
+            isSignIn: '',
+            isSignUp: ''
         };
         this.handleSignUpOL = this.handleSignUpOL.bind(this);
     }
     componentWillMount() {
         this.setState({
-            statusSignIn: this.props.statusSignIn,
-            statusSignUp: this.props.statusSignUp,
+            isSignIn: this.props.isSignIn,
+            isSignUp: this.props.isSignUp,
         });
     }
     nextState;
     handleSignUpOL() {
-        this.state.statusSignUp ? this.nextState = {
-            statusSignIn: true,
-            statusSignUp: false
+        this.state.isSignUp ? this.nextState = {
+            isSignIn: true,
+            isSignUp: false
         } : this.nextState = {
-            statusSignIn: false,
-            statusSignUp: true
+            isSignIn: false,
+            isSignUp: true
         };
         this.props.getStatusFromOverLay(this.nextState);
         this.setState(this.nextState);
     }
     render() {
+        const { isSignIn, isSignUp } = this.state;
         return (
-            <OverLayWrapper statusSignUp={this.state.statusSignUp}>
-                <OverLaySignIn statusSignIn={this.state.statusSignIn}>
+            <OverLayWrapper isSignUp={isSignUp}>
+                <OverLaySignIn isSignIn={isSignIn}>
                     <H2>Already have an account?</H2>
                     <P style={styleP}>Sign in to get personalized story recommendations, follow authors and topics you love, and interact with stories.</P>
                     <ButtonLogin type="button" onClick={this.handleSignUpOL}>Sign In</ButtonLogin>
                 </OverLaySignIn>
-                <OverLaySignUp statusSignUp={this.state.statusSignUp}>
+                <OverLaySignUp isSignUp={isSignUp}>
                     <H2>No account?</H2>
                     <P style={styleP}>Create an account to receive great stories in your inbox, personalize your homepage, and follow authors and topics that you love.</P>
                     <ButtonLogin type="button" onClick={this.handleSignUpOL}>Create One</ButtonLogin>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { TweenLite } from "gsap/all";
-import PositionMap from './../Position/PositionMap';
+import PositionMapContainer from './../Position/PositionMapContainer';
 const Wrapper = styled.div` 
     width: 1600px;
     height: 800px;
@@ -22,18 +22,18 @@ export class MapUser extends Component {
         this.handleMouseLeave = this.handleMouseLeave.bind(this);
         this.state = {
             scale: this.props.scale,
-            isPressMap: false,
             isAnimatedPosition: false,
-            isShowTemp: this.props.isShowTemp
+            isShowTemp: this.props.isShowTemp,
         }
         this.startMouseX = 0;
         this.startMouseY = 0;
         this.topWrapper = 0;
         this.leftWrapper = 0;
+        this.isPressMap = false;
     }
     handleMouseMove(e) {
         e.preventDefault();
-        if (!this.state.isPressMap) return;
+        if (!this.isPressMap) return;
         let newX = e.clientX - this.startMouseX + this.leftWrapper;
         let newY = e.clientY - this.startMouseY + this.topWrapper;
         TweenLite.to(this.refWrapper, 0.1, { left: newX + 'px', top: newY + 'px' });
@@ -42,7 +42,7 @@ export class MapUser extends Component {
         e.preventDefault();
         this.startMouseX = e.clientX;
         this.startMouseY = e.clientY;
-        this.setState({ isPressMap: true });
+        this.isPressMap = true;
         this.topWrapper = this.refWrapper.offsetTop;
         this.leftWrapper = this.refWrapper.offsetLeft;
     }
@@ -50,25 +50,31 @@ export class MapUser extends Component {
         e.preventDefault();
         this.startMouseX = 0;
         this.startMouseY = 0;
-        this.setState({ isPressMap: false });
+        this.isPressMap = false;
     }
     handleMouseLeave(e) {
         e.preventDefault();
-        this.setState({ isPressMap: false });
+        this.isPressMap = false;
     }
-    componentWillReceiveProps(nextProps) {
-        this.setState({ isAnimatedPosition: nextProps.actionAnima ? true : false, isShowTemp: nextProps.isShowTemp });
-        TweenLite.to(this.refWrapper, 0.5, { scale: nextProps.scale });
+    renderPossition = () => {
+        const { isAnimatedPosition, isShowTemp } = this.state;
+        const { Places } = this.props;
+        return Places.map((place, i) => {
+            return <PositionMapContainer Place={place} key={place._id} delay={i} type={0} isAnimated={isAnimatedPosition} isShowTemp={isShowTemp}></PositionMapContainer>
+        });
     }
     render() {
-        const { isAnimatedPosition, isShowTemp } = this.state;
         return (
             <Wrapper ref={Wrapper => this.refWrapper = Wrapper} onMouseMove={this.handleMouseMove} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp} onMouseLeave={this.handleMouseLeave}>
-                <PositionMap isShowTemp={isShowTemp} getValueTemp={this.props.getValueTemp} type={0} isAnimated={isAnimatedPosition}></PositionMap>
+                {this.renderPossition()}
                 <ImgMap src="./images/map.png">
                 </ImgMap>
             </Wrapper>
         )
+    }
+    componentWillReceiveProps(nextProps) {
+        this.setState({ isAnimatedPosition: nextProps.isAnimatedPoss ? true : false, isShowTemp: nextProps.isShowTemp });
+        TweenLite.to(this.refWrapper, 0.5, { scale: nextProps.scale });
     }
 }
 export default MapUser;

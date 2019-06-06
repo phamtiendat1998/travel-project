@@ -16,7 +16,6 @@ const UserSchema = mongoose.Schema({
     status: { type: Boolean, default: false },
     create_date: { type: Date, default: Date.now }
 }, {
-        // Set versionKey of mongoose
         versionKey: false
     });
 

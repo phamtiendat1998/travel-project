@@ -1,14 +1,13 @@
 import styled from 'styled-components';
 
 const PositionInput = styled.div.attrs(({ colorParam, colorBefore }) => ({
-    colorPosition : colorParam,
+    colorPosition: colorParam,
     colorBf: colorBefore
 }))`
     width: 15px;
     height: 15px;
     background-color: ${props => props.colorPosition};
     position: relative;
-    // border-radius: 3px;
     z-index: 2;
     :before{
         bottom: -4px;

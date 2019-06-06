@@ -6,7 +6,7 @@ const bodyParser = require('body-parser')
 const UserRouter = require('./api/routes/user');
 const ImageRouter = require('./api/routes/image');
 const PlaceRouter = require('./api/routes/place');
-
+const TripRouter = require('./api/routes/trip');
 // ConnectDB
 const mongoose = require('mongoose');
 const options = {
@@ -42,6 +42,7 @@ app.use((req, res, next) => {
 app.use('/users', UserRouter);
 app.use('/image', ImageRouter);
 app.use('/places', PlaceRouter);
+app.user('/trips', TripRouter);
 // Errorr handle
 app.use((req, res, next) => {
     const error = new Error('Not found');

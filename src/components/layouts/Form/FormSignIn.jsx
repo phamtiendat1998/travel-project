@@ -15,7 +15,7 @@ const SignInWrapper = styled.form`
     left: 0;
     padding: 5% 5%;
     transition: transform 0.6s ease-in-out;
-    transform: ${props => props.statusSignIn ? "translateX(0)" : "translateX(-150%)"};
+    transform: ${props => props.isSignIn ? "translateX(0)" : "translateX(-150%)"};
 `;
 const styleFontP = {
     marginBottom: '10%'
@@ -31,11 +31,11 @@ export default class FormSignIn extends Component {
         this.handleClickSignIn = this.handleClickSignIn.bind(this);
         this.handleDisableLogin = this.handleDisableLogin.bind(this);
         this.state = {
-            labelContent: {
-                userName: "Username",
-                passWord: "Password"
+            ContentLabel: {
+                UserName: "Username",
+                PassWord: "Password"
             },
-            disaButtonLogin: true,
+            isBtnLogin: true,
             user_name: {
                 value: '',
                 isValid: false
@@ -44,11 +44,11 @@ export default class FormSignIn extends Component {
                 value: '',
                 isValid: false
             },
-            ckbRemember: false
+            isRemember: false
         };
     }
     getValueFromCheckBox(input) {
-        this.setState({ ckbRemember: input.checked });
+        this.setState({ isRemember: input.checked });
     }
     getValueFromGroup(input) {
         let nextState = { ...this.state[input.name] };
@@ -58,9 +58,9 @@ export default class FormSignIn extends Component {
     }
     handleDisableLogin() {
         if (this.state.user_name.isValid === true && this.state.pass_word.isValid === true) {
-            this.setState({ disaButtonLogin: false });
+            this.setState({ isBtnLogin: false });
         } else {
-            this.setState({ disaButtonLogin: true });
+            this.setState({ isBtnLogin: true });
         }
     }
     handleClickSignIn(event) {
@@ -69,42 +69,44 @@ export default class FormSignIn extends Component {
             user_name: this.state.user_name.value,
             pass_word: this.state.pass_word.value
         }
-        this.props.handleLogin(user, this.state.ckbRemember);
+        this.props.handleLogin(user, this.state.isRemember);
     }
     render() {
+        const { isSignIn, ContentAlert } = this.props;
+        const { ContentLabel, isBtnLogin } = this.state;
         return (
-            <SignInWrapper onSubmit={this.handleClickSignIn} statusSignIn={this.props.statusSignIn}>
-                <H2>We are <Span color={props => props.theme.Color.Red}>F-i</Span></H2>
-                <P style={styleFontP} color={props => this.props.alertStatus ? props.theme.Color.Alert : props.theme.Color.Gray}>{this.props.alertData}</P>
+            <SignInWrapper onSubmit={this.handleClickSignIn} isSignIn={isSignIn}>
+                <H2>We are <Span colorT={props => props.theme.Color.Red}>F-i</Span></H2>
+                <P style={styleFontP} colorT={props => this.props.isAlert ? props.theme.Color.Alert : props.theme.Color.Gray}>{ContentAlert}</P>
                 <InputGroup
-                    alertDefault={0}
-                    labelContent={this.state.labelContent.userName}
-                    typeInput={"text"}
-                    placeHolder={"example123"}
-                    name={"user_name"}
+                    isAlert={0}
+                    ContentLabel={ContentLabel.UserName}
+                    TypeInput={"text"}
+                    PlaceHolder={"example123"}
+                    NameInput={"user_name"}
                     handleGetValue={this.getValueFromGroup}
                     regex={/^(?!.*__.*)(?!.*\.\..*)[a-z0-9_.]+$/}
-                    contentAlert="Không chứa dấu, không chứa kí tự (khoảng trắng, kí tự đặc biệt ngoại trừ '_')"
+                    ContentAlert="Không chứa dấu, không chứa kí tự (khoảng trắng, kí tự đặc biệt ngoại trừ '_')"
                 ></InputGroup>
                 <InputGroup
-                    alertDefault={0}
-                    labelContent={this.state.labelContent.passWord}
-                    typeInput={"password"}
-                    placeHolder={"example123@"}
-                    name={"pass_word"}
+                    isAlert={0}
+                    ContentLabel={ContentLabel.PassWord}
+                    TypeInput={"password"}
+                    PlaceHolder={"example123@"}
+                    NameInput={"pass_word"}
                     handleGetValue={this.getValueFromGroup}
                     regex={/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/}
-                    contentAlert="Gồm 8 kí tự trở lên, không chứa kí tự đặc biệt, ít nhất 1 chữ hoa"
+                    ContentAlert="Gồm 8 kí tự trở lên, không chứa kí tự đặc biệt, ít nhất 1 chữ hoa"
                 ></InputGroup>
-                <CheckBox handleGetValue={this.getValueFromCheckBox} value="ckbRemember" label="Remember me"></CheckBox>
+                <CheckBox handleGetValue={this.getValueFromCheckBox} value="isRemember" label="Remember me"></CheckBox>
                 <ButtonWrapper>
-                    <ButtonLogin type="submit" disabled={this.state.disaButtonLogin}>
+                    <ButtonLogin type="submit" disabled={isBtnLogin}>
                         Login
                     </ButtonLogin>
                 </ButtonWrapper>
-                <P color={props => props.theme.Color.Gray}>By signing up, you agree to F-i's</P>
+                <P colorT={props => props.theme.Color.Gray}>By signing in, you agree to F-i's</P>
                 <P>Terms and Conditions</P>
-                <P color={props => props.theme.Color.Gray}>&</P>
+                <P colorT={props => props.theme.Color.Gray}>&</P>
                 <P>Privacy Policy</P>
             </SignInWrapper>
         )

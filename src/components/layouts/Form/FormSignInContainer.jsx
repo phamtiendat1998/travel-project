@@ -9,11 +9,11 @@ export class FormSignInContainer extends Component {
         super(props);
         this.handleLoginUser = this.handleLoginUser.bind(this);
         this.state = {
-            alertStatus: false,
-            alertData: 'Welcome Back, Please login to your account.'
+            isAlert: false,
+            ContentAlert: 'Welcome Back, Please login to your account.'
         }
     }
-    handleLoginUser(user, ckbRemember) {
+    handleLoginUser(user, isRemember) {
         Axios.post('http://localhost:4000/users/signin', {
             user_name: user.user_name,
             pass_word: user.pass_word
@@ -21,38 +21,40 @@ export class FormSignInContainer extends Component {
             .then(res => {
                 const user = res.data.data[0];
                 const userJson = JSON.stringify(user);
-                if (ckbRemember) {
+                if (isRemember) {
                     localStorage.setItem('userLogin', userJson);
                 } else {
                     sessionStorage.setItem('userLogin', userJson);
                 }
                 this.props.onLoginUser(user);
                 this.setState({
-                    alertStatus: false,
-                    alertData: 'Login successfully'
+                    isAlert: false,
+                    ContentAlert: 'Login successfully'
                 });
             })
             .catch(err => {
                 if (err.response !== undefined) {
                     this.setState({
-                        alertStatus: true,
-                        alertData: err.response.data.message
+                        isAlert: true,
+                        ContentAlert: err.response.data.message
                     });
                 } else {
                     this.setState({
-                        alertStatus: true,
-                        alertData: 'Network error 404. Please comeback later.'
+                        isAlert: true,
+                        ContentAlert: 'Network error 404. Please comeback later.'
                     });
                 }
 
             });
     }
     render() {
+        const { isAlert, ContentAlert } = this.state;
+        const { isSignIn } = this.props;
         return (
             <FormSignIn
-                alertStatus={this.state.alertStatus}
-                alertData={this.state.alertData}
-                statusSignIn={this.props.statusSignIn}
+                isAlert={isAlert}
+                ContentAlert={ContentAlert}
+                isSignIn={isSignIn}
                 handleLogin={this.handleLoginUser}
             />
         )

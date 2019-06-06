@@ -6,18 +6,13 @@ import Axios from "axios";
 export default class FormSignUpContainer extends Component {
     constructor(props) {
         super(props);
-        this.getValueFromForm = this.getValueFromForm.bind(this);
         this.handleRegisterUser = this.handleRegisterUser.bind(this);
         this.state = {
-            alertStatus: false,
-            alertData: 'Welcome to F-i, Please register an account.'
+            isAlert: false,
+            ContentAlert: 'Welcome to F-i, Please register an account.'
         }
     }
-    getValueFromForm(value) {
-        console.log(value)
-    }
     handleRegisterUser(user) {
-        console.log(user);
         if (user.pass_word === user.rp_pass_word) {
             Axios.post('http://localhost:4000/users/signup', {
                 user_name: user.user_name,
@@ -27,37 +22,39 @@ export default class FormSignUpContainer extends Component {
             })
                 .then(res => {
                     this.setState({
-                        alertStatus: false,
-                        alertData: 'Register successfully'
+                        isAlert: false,
+                        ContentAlert: 'Register successfully'
                     });
                 })
                 .catch(err => {
                     if (err.response !== undefined) {
                         this.setState({
-                            alertStatus: true,
-                            alertData: err.response.data.message
+                            isAlert: true,
+                            ContentAlert: err.response.data.message
                         });
                     } else {
                         this.setState({
-                            alertStatus: true,
-                            alertData: 'Network error 404. Please comeback later.'
+                            isAlert: true,
+                            ContentAlert: 'Network error 404. Please comeback later.'
                         });
                     }
                 });
         }
         else {
             this.setState({
-                alertStatus: false,
-                alertData: 'Wrong confirm password, please try again'
+                isAlert: false,
+                ContentAlert: 'Wrong confirm password, please try again'
             });
         }
     }
     render() {
+        const { isAlert, ContentAlert } = this.state;
+        const { isSignUp } = this.props;
         return (
             <FormSignUp
-                alertStatus={this.state.alertStatus}
-                alertData={this.state.alertData}
-                statusSignUp={this.props.statusSignUp}
+                isAlert={isAlert}
+                ContentAlert={ContentAlert}
+                isSignUp={isSignUp}
                 handleGetValue={this.handleRegisterUser}
             />
         )

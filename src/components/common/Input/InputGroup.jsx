@@ -8,12 +8,11 @@ const InputGroupWrapper = styled.div`
     background-color: white;
     padding: 1% 2%;
     margin-bottom: 2%;
-    border : 1.5px solid ${props => props.alert === 0 ? props.theme.Color.Gray + "!important" : null};
-    border : 1.5px solid ${props => props.alert === true ? props.theme.Color.Alert + "!important" : null};
-    border : 1.5px solid ${props => props.alert === false ? props.theme.Color.Success + "!important" : null};
-    box-shadow: ${ props => props.statusFocus ? '0px 0px 15px 0px #80808040' : "none"};
+    border-bottom : 1.5px solid ${props => props.isAlert === 0 ? props.theme.Color.Gray + "!important" : null};
+    border-bottom : 1.5px solid ${props => props.isAlert === true ? props.theme.Color.Alert + "!important" : null};
+    border-bottom : 1.5px solid ${props => props.isAlert === false ? props.theme.Color.Success + "!important" : null};
+    box-shadow: ${ props => props.isFocus ? '0px 0px 15px 3px #80808040' : "none"};
     transition: 0.5s;
-    border-radius: 10px;
     position: relative;
 `;
 
@@ -26,25 +25,25 @@ export default class InputGroup extends Component {
     this.handleValidateInput = this.handleValidateInput.bind(this);
     this.setAndOutInput = this.setAndOutInput.bind(this);
     this.state = {
-      statusFocus: false,
-      statusAlert: this.props.alertDefault,
-      contentLabel: this.props.labelContent,
-      contentAlert: this.props.contentAlert
+      isFocus: false,
+      isAlert: this.props.isAlert,
+      ContentLabel: this.props.ContentLabel,
+      ContentAlert: this.props.ContentAlert
     }
-    this.alert = {
+    this.Alert = {
       null: "Không được để trống",
     }
   }
   turnOnAlert(message) {
     this.setState({
-      statusAlert: true,
-      contentLabel: message
+      isAlert: true,
+      ContentLabel: message
     });
   }
   turnOffAlert(message) {
     this.setState({
-      statusAlert: false,
-      contentLabel: message
+      isAlert: false,
+      ContentLabel: message
     });
   }
   setAndOutInput(name, value, isValid) {
@@ -57,41 +56,37 @@ export default class InputGroup extends Component {
   handleValidateInput(event) {
     const { name, value } = event.target;
     if (value === "") {
-      this.turnOnAlert(this.alert.null);
+      this.turnOnAlert(this.Alert.null);
       this.setAndOutInput(name, value, false);
     } else {
-      this.turnOffAlert(this.props.labelContent);
+      this.turnOffAlert(this.props.ContentLabel);
       const checkRegex = this.props.regex.exec(value);
       if (checkRegex !== null) {
-        this.turnOffAlert(this.props.labelContent);
+        this.turnOffAlert(this.props.ContentLabel);
         this.setAndOutInput(name, value, true);
       } else {
-        this.turnOnAlert(this.props.contentAlert);
+        this.turnOnAlert(this.props.ContentAlert);
         this.setAndOutInput(name, value, false);
       }
     }
   }
   handleFocusInput() {
     this.setState({
-      statusFocus: true,
+      isFocus: true,
     });
   }
   handleBlurInput() {
     this.setState({
-      statusFocus: false
+      isFocus: false
     });
   }
   render() {
-    let StatusFocus = this.state.statusFocus;
-    let StatusAlert = this.state.statusAlert;
-    let PlaceHolder = this.props.placeHolder;
-    let TypeInput = this.props.typeInput;
-    let NameInput = this.props.name;
-    let ContentAlert = this.props.contentAlert;
+    const { isFocus, isAlert } = this.state;
+    const { ContentAlert, TypeInput, NameInput, PlaceHolder } = this.props;
     return (
-      <InputGroupWrapper statusFocus={StatusFocus} alert={StatusAlert}>
-        <Label statusAlert={StatusAlert} statusFocus={StatusFocus}>{this.state.contentLabel}</Label>
-        <Input contentAlert={ContentAlert} onChange={this.handleValidateInput} onFocus={this.handleFocusInput} onBlur={this.handleBlurInput} type={TypeInput} placeholder={PlaceHolder} name={NameInput}></Input>
+      <InputGroupWrapper isFocus={isFocus} isAlert={isAlert}>
+        <Label isAlert={isAlert} isFocus={isFocus}>{this.state.ContentLabel}</Label>
+        <Input ContentAlert={ContentAlert} onChange={this.handleValidateInput} onFocus={this.handleFocusInput} onBlur={this.handleBlurInput} type={TypeInput} placeholder={PlaceHolder} name={NameInput}></Input>
       </InputGroupWrapper>
     )
   }

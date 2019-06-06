@@ -45,7 +45,7 @@ const SearchInput = styled.input`
 
 export default class Navtop extends Component {
   renderUserLogin = () => {
-    if (this.props.stateLogin === true) {
+    if (this.props.isLogin === true) {
       return <Nav.Item hoverTop borderLeft widthValue={props => props.theme.Width.NavItem}>
         <UserDropdown handleLogOut={this.props.handleLogOut}></UserDropdown>
       </Nav.Item>

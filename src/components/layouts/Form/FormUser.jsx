@@ -17,23 +17,24 @@ export default class FormUser extends Component {
         super(props);
         this.getStatusFromOverLay = this.getStatusFromOverLay.bind(this);
         this.state = {
-            statusSignIn: true,
-            statusSignUp: false
+            isSignIn: true,
+            isSignUp: false
         }
     }
 
     getStatusFromOverLay(status) {
         this.setState({
-            statusSignIn: status.statusSignIn,
-            statusSignUp: status.statusSignUp
+            isSignIn: status.isSignIn,
+            isSignUp: status.isSignUp
         });
     }
     render() {
+        const { isSignIn, isSignUp } = this.state;
         return (
             <FormUserWrapper>
-                <FormSignInContainer statusSignIn={this.state.statusSignIn}></FormSignInContainer>
-                <FormSignUpContainer statusSignUp={this.state.statusSignUp}></FormSignUpContainer>
-                <FormOverLay statusSignIn={this.state.statusSignIn} statusSignUp={this.state.statusSignUp} getStatusFromOverLay={this.getStatusFromOverLay}></FormOverLay>
+                <FormSignInContainer isSignIn={isSignIn}></FormSignInContainer>
+                <FormSignUpContainer isSignUp={isSignUp}></FormSignUpContainer>
+                <FormOverLay isSignIn={isSignIn} isSignUp={isSignUp} getStatusFromOverLay={this.getStatusFromOverLay}></FormOverLay>
             </FormUserWrapper>
         )
     }

@@ -20,21 +20,12 @@ export class ButtonTemp extends Component {
     constructor(props) {
         super(props);
         this.handleClick = this.handleClick.bind(this);
-        this.state = {
-            isShow: false
-        }
     }
     handleClick() {
-        const nextState = { ...this.state };
-        nextState.isShow ? nextState.isShow = false : nextState.isShow = true;
-        this.setState(nextState);
-        this.props.getValue(nextState);
-    }
-    componentDidMount() {
-        this.props.getValue(this.state);
+        this.props.toggleShowTemp();
     }
     render() {
-        const { isShow } = this.state;
+        const { isShow } = this.props;
         return (
             <Wrapper isShow={isShow} onClick={this.handleClick}>
                 <H5><i className="fas fa-thermometer-half"></i></H5>

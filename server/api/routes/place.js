@@ -1,7 +1,5 @@
 const router = require('express-promise-router')();
-
 const PlaceControler = require('../controllers/place');
-
 const { validateParam, validateBody, schemas } = require('./../../helpers/routerHepper');
 
 router.route('/')

@@ -1,2 +1,4 @@
 export const LOGIN_USER = "LOGIN_USER";
-
+export const SAVE_LIST_PLACE = "SAVE_LIST_PLACE";
+export const SAVE_FROM_PLACE = "SAVE_FROM_PLACE";
+export const REMOVE_FROM_PLACE = "REMOVE_FROM_PLACE";

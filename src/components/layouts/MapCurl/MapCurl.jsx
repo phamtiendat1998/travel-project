@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { TimelineLite, Power4, Power2, Power0 } from "gsap/all";
-import MapUser from './../../common/Map/MapUser';
+import MapUserContainer from './../../common/Map/MapUserContainer';
 import Zoom from './../../common/Zoom/Zoom';
 import ButtonTemp from './../../common/Button/ButtonTemp';
 
@@ -39,7 +39,6 @@ const MapWrapper = styled.div`
     height: 100%;
     overflow: hidden;
     z-index: 1;
-    transition: all 0.5s;
 `;
 const FeatureWrapper = styled.div`
     position: absolute;
@@ -62,7 +61,7 @@ export class MapCurl extends Component {
         this.handleMouseLeave = this.handleMouseLeave.bind(this);
         this.handleGetValueInputRange = this.handleGetValueInputRange.bind(this);
         this.handleActionAnimationPos = this.handleActionAnimationPos.bind(this);
-        this.handleGetValueButtonTemp = this.handleGetValueButtonTemp.bind(this);
+        this.toggleShowTemp = this.toggleShowTemp.bind(this);
         this.animaHoverCrul = null;
         this.animaClickCrul = null;
         this.animaMap = null;
@@ -70,7 +69,8 @@ export class MapCurl extends Component {
         this.state = {
             scaleMapDefault: 1,
             scaleMapChange: 1,
-            statusAnimaPos: false,
+            isAnimatedPoss: false,
+            isShowTemp: false
         }
     }
     componentDidMount() {
@@ -97,13 +97,13 @@ export class MapCurl extends Component {
         }
     }
     handleActionAnimationPos() {
-        if (this.state.statusAnimaPos) {
+        if (this.state.isAnimatedPoss) {
             this.setState({
-                statusAnimaPos: false
+                isAnimatedPoss: false
             });
         } else {
             this.setState({
-                statusAnimaPos: true
+                isAnimatedPoss: true
             });
         }
     }
@@ -113,18 +113,18 @@ export class MapCurl extends Component {
             scaleMapChange: scaleMapChange
         });
     }
-    handleGetValueButtonTemp(value) {
-        this.setState({ isShowTemp: value.isShow });
+    toggleShowTemp() {
+        this.setState({ isShowTemp: !this.state.isShowTemp });
     }
     render() {
-        const { scaleMapChange, statusAnimaPos, isShowTemp } = this.state;
+        const { scaleMapChange, isAnimatedPoss, isShowTemp } = this.state;
         return (
             <Wrapper ref={Wrapper => this.Wrapper = Wrapper}>
                 <MapWrapper>
-                    <MapUser isShowTemp={isShowTemp} getValueTemp={this.handleGetValueButtonTemp} actionAnima={statusAnimaPos} scale={scaleMapChange}></MapUser>
+                    <MapUserContainer isShowTemp={isShowTemp} isAnimatedPoss={isAnimatedPoss} scale={scaleMapChange}></MapUserContainer>
                 </MapWrapper>
                 <FeatureWrapper ref={FeatureWrapper => this.FeatureWrapper = FeatureWrapper}>
-                    <ButtonTemp getValue={this.handleGetValueButtonTemp}></ButtonTemp>
+                    <ButtonTemp isShowTemp={isShowTemp} toggleShowTemp={this.toggleShowTemp}></ButtonTemp>
                     <Zoom valueDefault="1" step="0.1" min="0.5" max="2" getValue={this.handleGetValueInputRange}></Zoom>
                 </FeatureWrapper>
                 <Crul ref={Crul => this.Crul = Crul} onMouseLeave={this.handleMouseLeave} onMouseEnter={this.handleMouseEnterCrul} onClick={this.handleClickMapCurl}>
