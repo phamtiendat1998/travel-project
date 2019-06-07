@@ -27,7 +27,13 @@ module.exports = {
     getPlaceFrom: async (req, res, next) => {
         const { from_place_id } = req.params;
         const trip = await Trip.find({ from: from_place_id });
-        jsonHelpper.successJson(200, res, trip);
+        const results = trip.map(async (trip) => {
+            const place = await Place.findById(trip.to);
+            return place;
+        });
+        Promise.all(results).then((completed) => {
+            jsonHelpper.successJson(200, res, completed);
+        })
     },
     deletePlace: async (req, res, next) => {
         const { place_id } = req.params;
