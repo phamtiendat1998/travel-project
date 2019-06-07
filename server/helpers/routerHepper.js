@@ -8,11 +8,6 @@ module.exports = {
             if (result.error) {
                 jsonHelpper.failJson(400, res, result.error);
             } else {
-                if (!req.value)
-                    req.value = {};
-                if (!req.value['params'])
-                    req.value['params'] = {};
-                req.value['params'][name] = result.value.param;
                 next();
             }
         }
@@ -23,11 +18,6 @@ module.exports = {
             if (result.error) {
                 jsonHelpper.failJson(400, res, result.error);
             } else {
-                if (!req.value)
-                    req.value = {};
-                if (!req.value['body'])
-                    req.value['body'] = {};
-                req.value['body'] = result.value;
                 next();
             }
         }
@@ -73,16 +63,19 @@ module.exports = {
                 day: Joi.number().required(),
                 night: Joi.number().required()
             },
-            timeFlight: Joi.number().required(),
-            departure: {
-                fromStart: Joi.date().required(),
-                toStart: Joi.date().required(),
-                fromEnd: Joi.date().required(),
-                toEnd: Joi.date().required(),
-            },
+            timeFlight: Joi.number().required()
         }),
-        idSchema: Joi.object().keys({
+        idUserSchema: Joi.object().keys({
             user_id: Joi.string().regex(/^[0-9a-fA-F]{24}$/).required()
-        })
+        }),
+        idPlaceSchema: Joi.object().keys({
+            place_id: Joi.string().regex(/^[0-9a-fA-F]{24}$/).required(),
+        }),
+        idTripSchema: Joi.object().keys({
+            trip_id: Joi.string().regex(/^[0-9a-fA-F]{24}$/).required(),
+        }),
+        idFromPlaceSchema: Joi.object().keys({
+            from_place_id: Joi.string().regex(/^[0-9a-fA-F]{24}$/).required(),
+        }),
     }
 }

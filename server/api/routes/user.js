@@ -7,10 +7,10 @@ router.route('/')
     .post(validateBody(schemas.userSchema), UserControler.newUser);
 
 router.route('/:user_id')
-    .get(validateParam(schemas.idSchema, 'user_id'), UserControler.getUser)
-    .put([validateParam(schemas.idSchema, 'user_id'), validateBody(schemas.userSchema)], UserControler.replaceUser)
-    .patch([validateParam(schemas.idSchema, 'user_id'), validateBody(schemas.userOptionalSchema)], UserControler.updateUser)
-    .delete(validateParam(schemas.idSchema, 'user_id'), UserControler.deleteUser);
+    .get(validateParam(schemas.idUserSchema, 'user_id'), UserControler.getUser)
+    .put([validateParam(schemas.idUserSchema, 'user_id'), validateBody(schemas.userSchema)], UserControler.replaceUser)
+    .patch([validateParam(schemas.idUserSchema, 'user_id'), validateBody(schemas.userOptionalSchema)], UserControler.updateUser)
+    .delete(validateParam(schemas.idUserSchema, 'user_id'), UserControler.deleteUser);
 
 router.route('/signin')
     .post(validateBody(schemas.accountSchema), UserControler.login);

@@ -42,7 +42,7 @@ app.use((req, res, next) => {
 app.use('/users', UserRouter);
 app.use('/image', ImageRouter);
 app.use('/places', PlaceRouter);
-app.user('/trips', TripRouter);
+app.use('/trips', TripRouter);
 // Errorr handle
 app.use((req, res, next) => {
     const error = new Error('Not found');

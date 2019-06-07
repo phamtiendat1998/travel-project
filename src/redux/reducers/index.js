@@ -1,13 +1,15 @@
 import { combineReducers } from "redux";
 import userLoginReducer from "./login";
-import PlaceReducer from './place';
+import PlacesReducer from './places';
 import FromPlaceReducer from './fromPlace';
+import ToPlacesReducer from './toPlaces';
 
 const rootReducer = combineReducers(
     {
         UserLogin: userLoginReducer,
-        PlaceList: PlaceReducer,
-        FromPlace: FromPlaceReducer
+        Places: PlacesReducer,
+        FromPlace: FromPlaceReducer,
+        ToPlaces: ToPlacesReducer,
     }
 )
 

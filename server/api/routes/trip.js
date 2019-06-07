@@ -1,5 +1,5 @@
 const router = require('express-promise-router')();
-const TripControler = require('../controllers/place');
+const TripControler = require('../controllers/trip');
 const { validateParam, validateBody, schemas } = require('./../../helpers/routerHepper');
 
 router.route('/')
@@ -7,7 +7,7 @@ router.route('/')
     .post(validateBody(schemas.tripSchema), TripControler.newTrip);
 
 router.route('/:trip_id')
-    .get(validateParam(schemas.idSchema, 'trip_id'), TripControler.getTrip)
-    .delete(validateParam(schemas.idSchema, 'trip_id'), TripControler.deleteTrip);
+    .get(validateParam(schemas.idTripSchema, 'trip_id'), TripControler.getTrip)
+    .delete(validateParam(schemas.idTripSchema, 'trip_id'), TripControler.deleteTrip);
 
 module.exports = router;

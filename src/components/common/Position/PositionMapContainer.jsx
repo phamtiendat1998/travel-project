@@ -9,7 +9,6 @@ export class PositionMapContainer extends Component {
             type: this.props.type
         }
     }
-
     getFromPlace = () => {
         const { Place, onSaveFromPlace } = this.props
         onSaveFromPlace(Place);
@@ -59,7 +58,8 @@ const mapDispatchToProps = (dispatch) => {
 }
 const mapStateToProps = (state) => {
     return {
-        FromPlace: state.FromPlace
+        FromPlace: state.FromPlace,
+        ToPlaces: state.ToPlaces
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(PositionMapContainer);

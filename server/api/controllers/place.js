@@ -1,6 +1,7 @@
 const jsonHelpper = require('../../helpers/jsonHelpper');
 const mongoose = require('mongoose');
 const Place = require('./../models/place');
+const Trip = require('./../models/trip');
 
 module.exports = {
     index: async (req, res, next) => {
@@ -20,8 +21,13 @@ module.exports = {
     },
     getPlace: async (req, res, next) => {
         const { place_id } = req.params;
-        const place = await Place.findById({ code: place_id });
+        const place = await Place.findById(place_id);
         jsonHelpper.successJson(200, res, place);
+    },
+    getPlaceFrom: async (req, res, next) => {
+        const { from_place_id } = req.params;
+        const trip = await Trip.find({ from: from_place_id });
+        jsonHelpper.successJson(200, res, trip);
     },
     deletePlace: async (req, res, next) => {
         const { place_id } = req.params;

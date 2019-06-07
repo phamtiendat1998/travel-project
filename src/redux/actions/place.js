@@ -1,19 +1,30 @@
-import { SAVE_LIST_PLACE, SAVE_FROM_PLACE, REMOVE_FROM_PLACE } from "../constants/actionType";
+import { ACTION } from "../constants/actionType";
 
-export const actSavePlaceList = (PlaceList) => {
+export const actSavePlaces = (Places) => {
     return {
-        type: SAVE_LIST_PLACE,
-        PlaceList
+        type: ACTION.SAVE_PLACES,
+        Places
     }
 }
 export const actSaveFromPlace = (FromPlace) => {
     return {
-        type: SAVE_FROM_PLACE,
+        type: ACTION.SAVE_FROM_PLACE,
         FromPlace
     }
 }
 export const actRemoveFromPlace = () => {
     return {
-        type: REMOVE_FROM_PLACE
+        type: ACTION.REMOVE_FROM_PLACE
+    }
+}
+export const actSaveToPlaces = (ToPlaces) => {
+    return {
+        type: ACTION.SAVE_TO_PLACES,
+        ToPlaces
+    }
+}
+export const actRemoveToPlaces = () => {
+    return {
+        type: ACTION.REMOVE_TO_PLACES
     }
 }

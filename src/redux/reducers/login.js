@@ -1,12 +1,12 @@
-import { LOGIN_USER } from "./../constants/actionType";
+import { ACTION } from "./../constants/actionType";
 let loginUser = {};
 
-const userLoginReducer = (state = loginUser, action ) => {
+const userLoginReducer = (state = loginUser, action) => {
     switch (action.type) {
-        case LOGIN_USER:
+        case ACTION.LOGIN_USER:
             let nextState = action.UserLogin;
             return nextState;
-        default: return {...state};
+        default: return { ...state };
     }
 }
 

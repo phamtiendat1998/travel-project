@@ -22,27 +22,6 @@ module.exports = {
             jsonHelpper.successJson(200, res, user);
         };
     },
-    loginWithToken: async (req, res, next) => {
-        const userLogin = await User.find({ user_name: req.body.user_name });
-        if (userLogin.length < 1) {
-            jsonHelpper.failJson(500, res, 'account', 'Account not found');
-        } else {
-            const match = await bcrypt.compare(req.body.pass_word, userLogin[0].pass_word);
-            if (match) {
-                const token = jwt.sign({
-                    userId: userLogin[0]._id,
-                },
-                    'secret',
-                    {
-                        expiresIn: '1h'
-                    });
-                return jsonHelpper.successJson(200, res, token, 'Login successfull');
-            }
-        };
-    },
-    checkTokenUser: async (req, res, next) => {
-        const decoded = await jwt.verify(req.params.token, 'secret');
-    },
     login: async (req, res, next) => {
         const userLogin = await User.find({ user_name: req.body.user_name });
         if (userLogin.length < 1) {
@@ -57,23 +36,19 @@ module.exports = {
         }
     },
     getUser: async (req, res, next) => {
-        const { user_id } = req.value.params;
+        const { user_id } = req.params;
         const user = await User.findById(user_id);
         jsonHelpper.successJson(200, res, user);
     },
-
-    // Full fill is necessary
     replaceUser: async (req, res, next) => {
-        const { user_id } = req.value.params;
-        const newUser = req.value.body;
+        const { user_id } = req.params;
+        const newUser = req.body;
         const result = await User.findByIdAndUpdate(user_id, newUser);
         jsonHelpper.successJson(200, res, newUser);
     },
-
-    // Number of fill is necessary
     updateUser: async (req, res, next) => {
-        const { user_id } = req.value.params;
-        const newUser = req.value.body;
+        const { user_id } = req.params;
+        const newUser = req.body;
         const result = await User.findByIdAndUpdate(user_id, newUser);
         jsonHelpper.successJson(200, res, newUser);
     },

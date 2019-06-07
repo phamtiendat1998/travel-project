@@ -1,11 +1,11 @@
-import { SAVE_FROM_PLACE, REMOVE_FROM_PLACE } from "../constants/actionType";
+import { ACTION } from "../constants/actionType";
 let FromPlace = {};
 const FromPlaceReducer = (state = FromPlace, action) => {
     switch (action.type) {
-        case SAVE_FROM_PLACE:
+        case ACTION.SAVE_FROM_PLACE:
             let nextState = action.FromPlace;
             return nextState;
-        case REMOVE_FROM_PLACE:
+        case ACTION.REMOVE_FROM_PLACE:
             return FromPlace;
         default: return { ...state };
     }

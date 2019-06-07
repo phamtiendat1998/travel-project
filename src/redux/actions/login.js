@@ -1,8 +1,8 @@
-import { LOGIN_USER } from "./../constants/actionType";
+import { ACTION } from "./../constants/actionType";
 
 export const actLoginUser = (UserLogin) => {
     return {
-        type: LOGIN_USER,
+        type: ACTION.LOGIN_USER,
         UserLogin
     }
 }
